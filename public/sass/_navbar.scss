@@ -1,0 +1,78 @@
+.nav {
+  width: 100vw;
+  height: 8rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  &__brand {
+    font-weight: 800;
+    font-size: 2.4em;
+    color: $color-purple;
+    text-transform: uppercase;
+
+    .text-secondary {
+      color: $color-blue;
+    }
+  }
+
+  &__el {
+    display: flex;
+    flex-direction: row;
+
+    font-weight: 300;
+    font-size: 1.8rem;
+
+    &__cta {
+      a {
+        color: $color-black;
+
+        &:visited {
+          color: $color-black;
+        }
+
+        &:hover,
+        &:active {
+          transform: scale(1.2);
+          border-bottom: 1px solid $color-blue;
+          cursor: pointer;
+        }
+      }
+      &:not(:last-of-type) {
+        margin-right: 2rem;
+      }
+    }
+  }
+  @include respond(px1300) {
+    // width: 100%;
+    margin: 0 10rem;
+  }
+
+  @include respond(px1050) {
+    margin: 0 5rem;
+  }
+
+  @include respond(px750) {
+    margin: 0 2.5rem;
+  }
+}
+
+.container--navbar {
+  height: 100%;
+  width: 120rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  @include respond(px1300) {
+    width: 100%;
+    margin: 0 10rem;
+  }
+
+  @include respond(px700) {
+    width: 100%;
+    margin: 5rem;
+  }
+}

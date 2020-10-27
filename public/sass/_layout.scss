@@ -1,0 +1,66 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  position: relative;
+  overflow: auto;
+}
+
+.main {
+  // position: static;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(100vh - 12rem);
+  justify-content: start;
+  width: 120rem;
+
+  // overflow: auto;
+  // position: relative;
+
+  @include respond(px1300) {
+    width: 100%;
+    margin: 0 10rem;
+  }
+
+  @include respond(px1050) {
+    margin: 0 5rem;
+  }
+
+  @include respond(px700) {
+    margin: 0 2.5rem;
+  }
+}
+
+#main-login,
+#main-register,
+#main-update-user {
+  .form__group {
+    margin-bottom: 4rem;
+  }
+
+  .form__change {
+    margin: 4rem;
+  }
+}
+
+#main-register {
+  @include respond(px950) {
+    .form--register {
+      width: 40rem;
+    }
+  }
+}
+
+#main-reset-password {
+  h2 {
+    margin-bottom: 3rem;
+    font-size: 2rem;
+  }
+
+  .btn {
+    margin-bottom: 5rem;
+  }
+}

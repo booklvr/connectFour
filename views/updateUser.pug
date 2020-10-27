@@ -1,0 +1,44 @@
+extends base
+
+block content
+  main.main#main-update-user
+
+    +title-1('Your Account Settings')
+
+    .container.container--form
+      h2.title.title--2 Update User
+      form#form-update-user.form.form--update(autocomplete = 'off')
+
+        .form__group
+          .form__inputs
+            label.form__label(for="displayName") Display name
+            input.form__input#display-name(type="text" value=user.displayName required)
+        .form__group
+          button.btn.btn__lg.btn--blue#submit-update-user-btn(type="submit") Update 
+
+
+      if (!user.googleId)
+      .container.container--form
+        h2.title.title--2 Update Password
+
+        form#form-confirm-password.form.form--update(autocomplete = 'off')
+          .form__group
+            .form__inputs
+              label.form__label(for="current-password") Current Password
+              input.form__input#current-password(type="password" required)
+          .form__group
+            button.btn.btn__lg.btn--blue#submit-confirm-password-btn(type="submit") Enter Current Password
+
+        form#form-update-password.form.form--update.hidden(autocomplete = 'off')
+          .form__group
+            .form__inputs
+              label.form__label(for="password") New Password
+              input.form__input#password(type="password" required)
+            .form__inputs
+              label.form__label(for="confirm-password") Confirm New Password
+              input.form__input#confirm-password(type="password" required)
+          .form__group
+            button.btn.btn__lg.btn--blue#submit-update-password-btn(type="submit") Update Password
+
+      button.btn.btn__lg.btn--red#delete-user-btn
+        i.fas.fa-minus-circle   Delete User

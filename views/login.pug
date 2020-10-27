@@ -1,0 +1,28 @@
+extends base
+
+block content
+  main.main#main-login
+    .container.container--form
+      h2.title.title--2 Login
+      form.form.form--small#login-form(autocomplete="off")
+        .form__group
+          .form__inputs
+            label.form__label(for="email") Email
+            input.form__input#email(type="email" autofocus required)
+          .form__inputs
+            label.form__label(for="password") Password
+            input.form__input#password(type="password" required)
+            a.forgot-password(href="/forgotPassword" tabindex="-1") Forgot Password?           
+        .form__group
+          button.btn.btn__lg.btn--blue#submit-login-btn Login
+
+      a.btn.btn__lg.btn--google(href="/api/v1/auth/google")
+        span.container--logo
+          img(src="/img/btn_google_light_normal_ios.svg") 
+        .btn__lg.btn--google-text Log in with Google
+
+      p.form__change Don't have an account?
+        a(href="/register")   Sign up.
+
+
+

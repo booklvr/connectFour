@@ -1,0 +1,124 @@
+// BUTTONS
+///
+.btn {
+  @include centered; // df fxdc jcc aic
+  font-family: $font-secondary;
+  font-size: 1.8rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 2.5rem;
+  height: 5rem;
+
+  color: $color-white;
+  cursor: pointer;
+}
+
+.btn__lg {
+  width: 25rem;
+}
+
+.btn__md {
+  width: 10rem;
+  height: 3.6rem;
+}
+
+.btn__rnd {
+  width: 5rem;
+
+  i {
+    @include centered;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.btn__rnd--md {
+  height: 3.6rem;
+  width: 3.6rem;
+  border-radius: 1.8rem;
+
+  i {
+    font-size: 1.75rem;
+  }
+}
+
+.btn__rnd--md.btn__svg {
+  background-color: white;
+
+  svg {
+    color: white;
+  }
+}
+
+.btn__rnd--sm {
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+
+  i {
+    font-size: 1.5rem;
+  }
+}
+
+.btn--red {
+  background-color: red;
+}
+
+.btn--pink {
+  background-color: $color-pink;
+}
+.btn--blue {
+  background-color: $color-blue;
+}
+
+.btn--purple {
+  background-color: $color-purple;
+}
+
+.btn--black {
+  background-color: $color-black;
+}
+
+.btn--grey {
+  background-color: $color-grey;
+}
+
+.btn--white {
+  background-color: $color-white;
+
+  i {
+    color: $color-black;
+  }
+}
+
+.btn--google {
+  border-radius: 2.5rem;
+  .container--logo {
+    @include centered; // df fxdc jcc aic
+    background-color: $color-white;
+    height: 5rem;
+    width: 5rem;
+    border-top-left-radius: 2.5rem;
+    border-bottom-left-radius: 2.5rem;
+    border: 2px solid #4285f4;
+  }
+  box-sizing: content-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #4285f4;
+
+  img {
+    height: 3.5rem;
+    width: 3.5rem;
+  }
+  &-text {
+    width: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-white;
+    font-family: 'Roboto';
+  }
+}

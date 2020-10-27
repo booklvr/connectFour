@@ -1,0 +1,38 @@
+extends base
+
+block content
+  main.main.main--align-middle#main-addLesson
+
+    +title-1('Add a Lesson')
+
+    .container.container--form
+      //- h2.title.title--2 Add A Lesson
+      form#form-register.form.form--register(autocomplete = 'off')
+
+        .form__columns
+          .form__group
+            .form__inputs
+              label.form__label(for="title") Title
+              input.form__input#title(type="text" required)
+              p.validation-message.hidden 
+            .form__inputs
+              label.form__label(for="class") Class
+              input.form__input#class(type="email")
+              p.validation-message 
+
+          .form__group
+            .form__inputs
+              label.form__label(for="chapter") Chapter
+              input.form__input#chapter(type="text")
+              p.validation-message.hidden 
+            .form__inputs
+              label.form__label(for="language-focus") Language Focus
+              input.form__input#language-focus(type="email")
+              p.validation-message 
+          
+        .form__group
+          button.btn.btn__lg.btn--blue#submit-add-lesson-btn(type="submit") Create Lesson
+
+
+
+
