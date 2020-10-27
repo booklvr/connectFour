@@ -10,7 +10,7 @@ router
   .post(
     authController.isAuthenticated,
     // classroomController.setClassroomOwnerId,
-    classroomController.createLesson
+    lessonController.createLesson
   );
 
 router

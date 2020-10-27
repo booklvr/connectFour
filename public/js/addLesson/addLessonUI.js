@@ -40,7 +40,7 @@ const addLessonUI = (function () {
       try {
         const res = await axios({
           method: 'POST',
-          url: '/api/v1/lesson',
+          url: '/api/v1/lessons',
           data: {
             title: DOM.title.value,
             class: DOM.class.value,
@@ -51,8 +51,9 @@ const addLessonUI = (function () {
 
         if (res.data.status === 'success') {
           showAlert('success', 'Lesson Added Successfully');
+          // console.log(res.data.data.data);
           window.setTimeout(() => {
-            location.assign(`/my-lessons/${res.data.data.data.slug}`);
+            location.assign(`/my-lessons/${res.data.data.data._id}`);
           }, 1000);
         } else {
           DOM.className.value = '';

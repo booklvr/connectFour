@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-const passportLocalMongoose = require('passport-local-mongoose');
-const validator = require('validator');
-const crypto = require('crypto');
+// const passportLocalMongoose = require('passport-local-mongoose');
+// const validator = require('validator');
+// const crypto = require('crypto');
 
-const UserSchema = new mongoose.Schema(
+const LessonSchema = new mongoose.Schema(
   {
     title: {
       type: String,
@@ -43,4 +43,4 @@ const UserSchema = new mongoose.Schema(
 );
 
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('Lesson', LessonSchema);

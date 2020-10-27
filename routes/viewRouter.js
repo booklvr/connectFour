@@ -42,6 +42,8 @@ router.get(
   viewsController.addLesson
 );
 
+router.get('/my-lessons/:id', authController.isAuthenticated, viewsController.getLesson);
+
 router.get('/connectFour', authController.isAuthenticated, viewsController.connectFour);
 
 module.exports = router;
