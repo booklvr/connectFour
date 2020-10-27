@@ -14,9 +14,12 @@ const addLessonUI = (function () {
   };
 
   const DOM = {
-    className: document.querySelector(DOMStrings.className),
-    submitAddClassroomBtn: document.querySelector(
-      DOMStrings.submitAddClassroomBtn
+    title: document.querySelector(DOMStrings.title),
+    class: document.querySelector(DOMStrings.class),
+    chapter: document.querySelector(DOMStrings.chapter),
+    languageFocus: document.querySelector(DOMStrings.languageFocus),
+    submitAddLessonBtn: document.querySelector(
+      DOMStrings.submitAddLessonBtn
     ),
   };
 
@@ -47,9 +50,9 @@ const addLessonUI = (function () {
         });
 
         if (res.data.status === 'success') {
-          showAlert('success', 'Classroom Added Successfully');
+          showAlert('success', 'Lesson Added Successfully');
           window.setTimeout(() => {
-            location.assign(`/my-classrooms/${res.data.data.data.slug}`);
+            location.assign(`/my-lessons/${res.data.data.data.slug}`);
           }, 1000);
         } else {
           DOM.className.value = '';

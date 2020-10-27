@@ -44,3 +44,8 @@ const connectFourPage = document.getElementById('connect-four');
 if (connectFourPage) {
   import('./connectFour/connectFourController').then();
 }
+
+const addLessonPage = document.getElementById('main-addLesson');
+if (addLessonPage) {
+  import('./addLesson/addLessonController').then();
+}

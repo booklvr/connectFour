@@ -25,6 +25,7 @@ const globalErrorHandler = require('./controllers/errorController');
 const viewRouter = require('./routes/viewRouter');
 const userRouter = require('./routes/userRouter');
 const authRouter = require('./routes/authRouter');
+const lessonRouter = require('./routes/lessonRouter');
 
 // LOAD CONFIG FILES
 dotenv.config({ path: '.config/config.env' });
@@ -119,6 +120,7 @@ app.use(function (req, res, next) {
 app.use('/', viewRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/lessons', lessonRouter);
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });

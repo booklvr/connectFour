@@ -1,5 +1,5 @@
 // /* eslint-disable */
-import { addClassroomUI as UI } from './addLessonUI';
+import { addLessonUI as UI } from './addLessonUI';
 
 var controller = (function (UI) {
   const setupEventListeners = function () {
@@ -8,13 +8,13 @@ var controller = (function (UI) {
 
     // SETUP DOM
     var DOM = {
-      submitAddClassroomBtn: document.querySelector(
-        DOMStrings.submitAddClassroomBtn
+      submitAddLessonBtn: document.querySelector(
+        DOMStrings.submitAddLessonBtn
       ),
     };
 
     // EVENT LISTENERS
-    DOM.submitAddClassroomBtn.addEventListener('click', UI.addClassroom);
+    DOM.submitAddLessonBtn.addEventListener('click', UI.addLesson);
   };
 
   return {

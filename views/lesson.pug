@@ -1,0 +1,38 @@
+extends base
+
+
+block content
+
+
+
+  main.main#main-classroom(data-classroom-id=`${classroom._id}`)
+
+
+    +title-1(`${classroom.className}`)
+
+    .game-options-container
+      .btn.btn__lg.game-options-btn.individual-game Individual Game
+      .btn.btn__lg.game-options-btn.boys-vs-girls Boys Vs Girls
+      .btn.btn__lg.game-options-btn.team-game Team Game
+      .btn.btn__lg.game-options-btn.class-participation Class Participation
+
+
+    .container.container--form--add-student
+      form.form#student-form(autocomplete="off")
+        .form__group
+          .form__inputs
+            label.form__label(for="student-name") Name
+            input.form__input#student-name(type="text" autofocus required)
+        .form__group
+          h3 Gender
+          .form__inputs--radios
+            input#radio-male(type="radio" name="student-gender" value="male") 
+            label(for="radio-male" tabindex="0") boy
+          .form__inputs--radios
+            input#radio-female(type="radio" name="student-gender" value="female") 
+            label(for="radio-female" tabindex="0") girl
+
+          .btn.btn__rnd.btn__rnd--md.btn--blue#submit-add-student-btn(tabindex="0")
+            i.fas.fa-plus
+
+   
