@@ -56,7 +56,7 @@ exports.register = catchAsync(async (req, res, next) => {
     
     passport.authenticate("local")(req, res, function(){
       // req.flash("success", "successfully signed up! nice to meet you " + req.body.username);
-      // res.redirect('../../../../my-saved-games')
+      // res.redirect('../../../../lessons')
       res.status(200).json({
         status: 'success', 
         message: 'User Registered Successfully',

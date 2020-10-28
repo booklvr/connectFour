@@ -40,7 +40,7 @@ const loginUI = (function () {
         if (res.data.status === 'success') {
           showAlert('success', 'login successful');
           window.setTimeout(() => {
-            location.assign('/my-saved-games');
+            location.assign('/lessons');
           }, 1000);
         } else if (
           res.data.status === 'fail' &&

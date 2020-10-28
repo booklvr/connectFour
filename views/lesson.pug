@@ -3,31 +3,22 @@ extends base
 
 block content
 
-  main.main#main-classroom(data-classroom-id=`${lesson._id}`)
+  main.main#main-lesson(data-lesson-id=`${lesson._id}`)
 
 
     +title-1(`${lesson.title}`)
 
-    .game-options-container
-      .btn.btn__lg.game-options-btn.individual-game Individual Game
-      .btn.btn__lg.game-options-btn.boys-vs-girls Boys Vs Girls
-      .btn.btn__lg.game-options-btn.team-game Team Game
-      .btn.btn__lg.game-options-btn.class-participation Class Participation
-
-
     .container.container--form--add-questions
-      form.form#lesson-form(autocomplete="off")
+      form.form#lesson-form(action=`/api/v1/lessons/${lesson._id}` autocomplete="off", method='post', enctype="multipart/form-data")
         .form__group
           .form__inputs
             label.form__label(for="add-question") Add the target language here.
-            textArea.form__input#add-question(form="lesson-form" autofocus required)
+            textArea.form__input#add-question(form="lesson-form" name="question" autofocus required)
         .form__group
 
           .form__inputs--img
             label(for="add-img" tabindex="0") Add An Image
-            input#add-img(type="file" name="img" ) 
+            input#add-img(type="file" name="uploadImage" ) 
 
-
-
-          .btn.btn__rnd.btn__rnd--md.btn--blue#submit-add-student-btn(tabindex="0")
-            i.fas.fa-plus
+        button.btn.btn__rnd.btn__rnd--md.btn--blue#submit-add-question-btn(type="submit" tabindex="0")
+          i.fas.fa-plus

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
+const Lesson = require('./lessonModel');
 const validator = require('validator');
 const crypto = require('crypto');
 
@@ -54,6 +55,12 @@ UserSchema.methods.createPasswordResetToken = function () {
 
   return resetToken;
 };
+
+UserSchema.virtual('lessons', {
+  ref: 'Lesson',
+  localField: '_id',
+  foreignField: 'owner',
+});
 
 
 

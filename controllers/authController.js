@@ -17,7 +17,7 @@ exports.isAuthenticated = (req, res, next) => {
 
 exports.isLoggedIn = (req, res, next) => {
   if (req.isAuthenticated()) {
-    return res.redirect('/my-saved-games');
+    return res.redirect('/lessons');
   }
   return next();
 };

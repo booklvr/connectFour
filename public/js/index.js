@@ -49,3 +49,8 @@ const addLessonPage = document.getElementById('main-addLesson');
 if (addLessonPage) {
   import('./addLesson/addLessonController').then();
 }
+
+const lessonPage = document.getElementById('main-lesson');
+if (lessonPage) {
+  import('./lesson/lessonController').then();
+}

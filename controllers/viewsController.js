@@ -65,18 +65,22 @@ exports.updateUser = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getSavedGames = async (req, res) => {
+exports.getLessons = async (req, res) => {
   let user = await User.findById(req.user._id);
+  console.log('user', user);
 
   user = await user
     .populate({
-      path: 'classrooms',
+      path: 'lessons',
     })
     .execPopulate();
 
-  res.status(200).render('savedGames', {
-    title: 'classrooms',
-    classrooms: user.classrooms,
+  console.log(user.lessons);
+  console.log(user);
+
+  res.status(200).render('lessons', {
+    title: 'Lessons',
+    lessons: user.lessons,
   });
 };
 

@@ -1,0 +1,136 @@
+.add-class-btn {
+  position: absolute;
+  @include centered;
+  top: 15.6rem;
+  right: calc((100vw - 120rem) / 2);
+  font-size: 2rem;
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 2.25em;
+  color: $color-white;
+  background-color: $color-blue;
+
+  @include respond(px1300) {
+    right: 10rem;
+  }
+
+  @include respond(game-mode) {
+    position: static;
+    top: 0;
+    margin: 0rem 0 3rem;
+  }
+
+  a {
+    @include centered; // df fxdc jcc aic
+
+    i {
+      color: $color-white;
+      font-size: 3rem;
+    }
+  }
+}
+
+.container--classrooms {
+  width: 120rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: space-between;
+  height: 100%;
+  position: relative;
+  margin-bottom: 2rem;
+
+  @include respond(px1300) {
+    width: 100%;
+    padding: 0 10rem;
+  }
+
+  .container--classroom {
+    @include centered;
+
+    max-height: 40rem;
+    width: 27.75rem;
+    position: relative;
+    border: 1px solid $color-light-grey;
+    margin-bottom: 3rem;
+
+    @include respond(px1300) {
+      min-width: calc((100% - 6rem) / 3);
+
+      &:not(:nth-child(3n)) {
+        margin-right: 3rem;
+      }
+    }
+
+    @include respond(px1100) {
+      min-width: calc((100% - 3rem) / 2);
+
+      font-size: 0.2rem;
+
+      &:not(:nth-child(3n)) {
+        margin-right: 0;
+      }
+
+      &:not(:nth-child(2n)) {
+        margin-right: 3rem;
+      }
+    }
+
+    @include respond(px750) {
+      min-width: 100%;
+
+      &:not(:nth-child(2n)) {
+        margin-right: 0rem;
+      }
+    }
+
+    .trash-btn {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      display: none;
+    }
+
+    .class-title {
+      margin-top: 4.1rem;
+      margin-bottom: 2.8rem;
+      font-size: 2rem;
+      font-weight: bold;
+      font-family: $font-secondary;
+
+      a {
+        color: $color-blue;
+      }
+    }
+
+    .games {
+      @include centered;
+      padding-bottom: 2rem;
+      font-family: $font-secondary;
+      font-weight: 600;
+
+      .game {
+        width: 21.33rem;
+        text-align: center;
+        font-size: 1.8rem;
+        color: $color-black;
+        margin: 1.25rem;
+        cursor: pointer;
+
+        &:not(:last-of-type) {
+          padding-bottom: 2rem;
+          border-bottom: 2px solid $color-light-grey;
+        }
+
+        &-link {
+          color: $color-black;
+        }
+      }
+    }
+
+    &:hover .trash-btn {
+      display: block;
+    }
+  }
+}

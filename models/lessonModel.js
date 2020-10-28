@@ -21,6 +21,9 @@ const LessonSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+    }
     // questions: [
     //  {
     //    question: {
@@ -36,10 +39,10 @@ const LessonSchema = new mongoose.Schema(
   {
     timestamps: true,
   },
-  // {
-  //   toJson: { virtuals: true },
-  //   toObject: { virtuals: true },
-  // }
+  {
+    toJson: { virtuals: true },
+    toObject: { virtuals: true },
+  }
 );
 
 

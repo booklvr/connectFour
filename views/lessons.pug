@@ -9,7 +9,12 @@ block content
       a(href="/addLesson")
         i.fas.fa-plus
 
+    .container--lessons
+      ol
+        
+        each lesson in lessons 
+          li
+            a(href=`/lessons/${lesson._id}`)= lesson.title
+        
     
-
-       
 

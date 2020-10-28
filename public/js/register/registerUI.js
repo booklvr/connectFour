@@ -155,7 +155,7 @@ const registerUI = (function () {
 
           if (res.data.status === 'success') {
             window.setTimeout(() => {
-              location.assign('/my-saved-games');
+              location.assign('/lessons');
             }, 1000);
           } else {
             showAlert('error', 'register failed');

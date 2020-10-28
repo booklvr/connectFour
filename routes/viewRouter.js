@@ -16,9 +16,9 @@ router.get(
 
 
 router.get(
-  '/my-saved-games',
+  '/lessons',
   authController.isAuthenticated,
-  viewsController.getSavedGames
+  viewsController.getLessons
 );
 
 
@@ -42,7 +42,7 @@ router.get(
   viewsController.addLesson
 );
 
-router.get('/my-lessons/:id', authController.isAuthenticated, viewsController.getLesson);
+router.get('/lessons/:id', authController.isAuthenticated, viewsController.getLesson);
 
 router.get('/connectFour', authController.isAuthenticated, viewsController.connectFour);
 

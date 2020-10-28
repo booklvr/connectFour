@@ -22,7 +22,7 @@ router.get(
   '/google/callback',
   passport.authenticate('google', {
     failureRedirect: '/login',
-    successRedirect: '../../../../my-saved-games',
+    successRedirect: '../../../../lessons',
   })
 );
 
