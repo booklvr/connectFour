@@ -53,7 +53,7 @@ const addLessonUI = (function () {
           showAlert('success', 'Lesson Added Successfully');
           // console.log(res.data.data.data);
           window.setTimeout(() => {
-            location.assign(`/my-lessons/${res.data.data.data._id}`);
+            location.assign(`/lessons/${res.data.data.data._id}`);
           }, 1000);
         } else {
           DOM.className.value = '';

@@ -25,32 +25,32 @@ exports.updateLesson = catchAsync(async (req, res, next) => {
   // console.log('req.file.filename', req.file.filename);
   // console.log('lesson._id', req.body.lessonId);
   // console.log('question', req.body.question);
-  // const question = {
-  //   question: req.body.question,
-  //   imageSrc: req.file.fileName,
-  // };
+  const question = {
+    question: req.body.question,
+    imageSrc: req.file.filename,
+  };
   // question.question = req.body.question;
   // question.imageSrc = req.file.filename;
 
-  Lesson.findByIdAndUpdate(req.body.lessonId, {
-    $push: {
-      question: {
-        question: req.body.question,
-        imageSrc: req.file.filename,
-      },
-    },
-    { 'new': true},
-  );
+  // Lesson.findByIdAndUpdate(req.body.lessonId, {
+  //   $push: {
+  //     question: {
+  //       question: req.body.question,
+  //       imageSrc: req.file.filename,
+  //     },
 
-  // const lesson = await Lesson.findById(req.body.lessonId);
+  //   },
+  // });
 
-  // if (!lesson.questions) {
-  //   lesson.questions = [];
-  // }
-  // lesson.questions.push(question);
-  // lesson.save();
+  const lesson = await Lesson.findById(req.body.lessonId);
 
-  // return res.redirect('back');
+  if (!lesson.questions) {
+    lesson.questions = [];
+  }
+  lesson.questions.push(question);
+  lesson.save();
+
+  return res.redirect('back');
 
   // res.status(200).json({
   //   status: 'success',
