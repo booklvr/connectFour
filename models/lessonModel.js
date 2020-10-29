@@ -15,7 +15,7 @@ const LessonSchema = new mongoose.Schema(
     },
     chapter: {
       type: String,
-      trim: true
+      trim: true,
     },
     languageFocus: {
       type: String,
@@ -23,18 +23,18 @@ const LessonSchema = new mongoose.Schema(
     },
     owner: {
       type: mongoose.Schema.Types.ObjectId,
-    }
-    // questions: [
-    //  {
-    //    question: {
-    //      type: String,
-    //      trim: true,
-    //    },
-    //    image: {
-    //      type: Buffer,
-    //    } 
-    //  }
-    // ]
+    },
+    questions: [
+      {
+        question: {
+          type: String,
+          trim: true,
+        },
+        imageSrc: {
+          type: String,
+        },
+      },
+    ],
   },
   {
     timestamps: true,
@@ -44,6 +44,5 @@ const LessonSchema = new mongoose.Schema(
     toObject: { virtuals: true },
   }
 );
-
 
 module.exports = mongoose.model('Lesson', LessonSchema);

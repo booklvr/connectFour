@@ -10,9 +10,7 @@ const lessonUI = (function () {
     lessonForm: '#lesson-form',
   };
 
-  const DOM = {
-    
-  };
+  const DOM = {};
 
   // HELPER FUNCTIONS
 
@@ -25,9 +23,7 @@ const lessonUI = (function () {
       e.preventDefault();
       console.log('fuck yeah');
       e.target.submit();
-
-    }
-   
+    },
   };
 })();
 

@@ -14,13 +14,11 @@ router.get(
   viewsController.getRegisterForm
 );
 
-
 router.get(
   '/lessons',
   authController.isAuthenticated,
   viewsController.getLessons
 );
-
 
 router.get(
   '/forgotPassword',
@@ -42,8 +40,16 @@ router.get(
   viewsController.addLesson
 );
 
-router.get('/lessons/:id', authController.isAuthenticated, viewsController.getLesson);
+router.get(
+  '/lessons/:id',
+  authController.isAuthenticated,
+  viewsController.getLesson
+);
 
-router.get('/connectFour', authController.isAuthenticated, viewsController.connectFour);
+router.get(
+  '/connectFour/:id',
+  authController.isAuthenticated,
+  viewsController.connectFour
+);
 
 module.exports = router;

@@ -16,7 +16,6 @@ exports.getRegisterForm = (req, res) => {
   });
 };
 
-
 exports.forgotPassword = (req, res) => {
   res.status(200).render('forgotPassword', {
     title: 'Forgot Password',
@@ -55,7 +54,6 @@ exports.resetPassword = catchAsync(async (req, res) => {
   });
 });
 
-
 exports.updateUser = catchAsync(async (req, res, next) => {
   const user = await User.findById(req.user._id).select('+googleId');
 
@@ -90,21 +88,21 @@ exports.addLesson = (req, res) => {
   });
 };
 
-exports.connectFour = catchAsync(async(req, res, next) => {
+exports.connectFour = catchAsync(async (req, res, next) => {
+  const lesson = await Lesson.findById(req.params.id);
+
   res.status(200).render('connectFour', {
     title: 'connectFour',
-    images: [1, 2, 3, 4, 5, 6, 7]
-  })
-})
+    lesson,
+  });
+});
 
 exports.getLesson = catchAsync(async (req, res, next) => {
   const lesson = await Lesson.findById(req.params.id);
 
-  console.log(lesson)
+  console.log(lesson);
 
   res.status(200).render('lesson', {
     lesson: lesson,
   });
 });
-
-

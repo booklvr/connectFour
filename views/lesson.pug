@@ -10,15 +10,26 @@ block content
 
     .container.container--form--add-questions
       form.form#lesson-form(action=`/api/v1/lessons/${lesson._id}` autocomplete="off", method='post', enctype="multipart/form-data")
+        input(type="hidden" name="lessonId", value=lesson._id)
         .form__group
-          .form__inputs
+          
+          
             label.form__label(for="add-question") Add the target language here.
             textArea.form__input#add-question(form="lesson-form" name="question" autofocus required)
         .form__group
 
-          .form__inputs--img
+          
             label(for="add-img" tabindex="0") Add An Image
             input#add-img(type="file" name="uploadImage" ) 
 
+
         button.btn.btn__rnd.btn__rnd--md.btn--blue#submit-add-question-btn(type="submit" tabindex="0")
           i.fas.fa-plus
+
+    each question in lesson.questions
+      .container--question
+        p= question.question
+        img(src=`/img/uploads/resized/${question.imageSrc}`, alt="")
+
+    a(href=`/connectFour/${lesson._id}`) Play Connect Four
+    

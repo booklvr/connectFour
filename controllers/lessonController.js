@@ -1,13 +1,11 @@
 // const User = require('../models/userModel');
 const fs = require('fs');
 const path = require('path');
+const sharp = require('sharp');
 const Lesson = require('../models/lessonModel');
 const factory = require('./handlerFactory');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
-const sharp = require('sharp');
-const router = require('../routes/lessonRouter');
-
 
 exports.setLessonOwnership = (req, res, next) => {
   // get user from isLoggedIn middleware
@@ -15,59 +13,56 @@ exports.setLessonOwnership = (req, res, next) => {
   next();
 };
 
-exports.updateLesson = catchAsync(async(req, res, next ) => {
-  console.log('fuck yeah we made it');
-
-  const {filename: image} = req.file
+exports.updateLesson = catchAsync(async (req, res, next) => {
+  const { filename: image } = req.file;
 
   await sharp(req.file.path)
-    .resize({width: 100, height: 100})
+    .resize({ width: 100, height: 100 })
     .png()
-    .toFile(
-      path.resolve(req.file.destination, 'resized', image)
-    )
-    fs.unlinkSync(req.file.path);
+    .toFile(path.resolve(req.file.destination, 'resized', image));
+  fs.unlinkSync(req.file.path);
 
-  // const writeStream = fs.createWriteStream('./dist/img/uploads');
+  // console.log('req.file.filename', req.file.filename);
+  // console.log('lesson._id', req.body.lessonId);
+  // console.log('question', req.body.question);
+  // const question = {
+  //   question: req.body.question,
+  //   imageSrc: req.file.fileName,
+  // };
+  // question.question = req.body.question;
+  // question.imageSrc = req.file.filename;
 
-  // const buffer = await sharp(req.file.buffer).resize({ width: 100, height: 100 }).png().toBuffer();
+  Lesson.findByIdAndUpdate(req.body.lessonId, {
+    $push: {
+      question: {
+        question: req.body.question,
+        imageSrc: req.file.filename,
+      },
+    },
+    { 'new': true},
+  );
 
-  // buffer.pipe(writeStream);
+  // const lesson = await Lesson.findById(req.body.lessonId);
 
-  
-  // write file to file system
+  // if (!lesson.questions) {
+  //   lesson.questions = [];
+  // }
+  // lesson.questions.push(question);
+  // lesson.save();
 
-
-  // save img source in database
-
-
-  const question = req.body.question;
-  console.log('question', question);
-
-  req.on('end', () => {
-    res.status(200).json({
-      status:'success',
-      data: {
-        data: 'fuck yeah'
-      }
-    })
-  })
+  // return res.redirect('back');
 
   // res.status(200).json({
   //   status: 'success',
-    
+
   //   data: {
   //     data: buffer,
   //   },
   // });
-
- 
-})
+});
 
 exports.getAllLessons = factory.getAll(Lesson);
 exports.getLesson = factory.getOne(Lesson);
 exports.createLesson = factory.createOne(Lesson);
 // exports.updateLesson = factory.updateOne(Lesson);
 exports.deleteLesson = factory.deleteOne(Lesson);
-
-

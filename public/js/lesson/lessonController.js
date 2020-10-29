@@ -8,9 +8,7 @@ var controller = (function (UI) {
 
     // SETUP DOM
     var DOM = {
-      addQuestionBtn: document.querySelector(
-        DOMStrings.addQuestionBtn
-      ),
+      addQuestionBtn: document.querySelector(DOMStrings.addQuestionBtn),
       lessonForm: document.querySelector(DOMStrings.lessonForm),
     };
 
