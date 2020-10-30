@@ -22,25 +22,12 @@ exports.updateLesson = catchAsync(async (req, res, next) => {
     .toFile(path.resolve(req.file.destination, 'resized', image));
   fs.unlinkSync(req.file.path);
 
-  // console.log('req.file.filename', req.file.filename);
-  // console.log('lesson._id', req.body.lessonId);
-  // console.log('question', req.body.question);
+  // add Question to lesson question array
+
   const question = {
     question: req.body.question,
     imageSrc: req.file.filename,
   };
-  // question.question = req.body.question;
-  // question.imageSrc = req.file.filename;
-
-  // Lesson.findByIdAndUpdate(req.body.lessonId, {
-  //   $push: {
-  //     question: {
-  //       question: req.body.question,
-  //       imageSrc: req.file.filename,
-  //     },
-
-  //   },
-  // });
 
   const lesson = await Lesson.findById(req.body.lessonId);
 
@@ -49,6 +36,19 @@ exports.updateLesson = catchAsync(async (req, res, next) => {
   }
   lesson.questions.push(question);
   lesson.save();
+
+  // Lesson.findByIdAndUpdate(
+  //   req.body.lessonId,
+  //   {
+  //     $push: {
+  //       questions: {
+  //         question: req.body.question,
+  //         imageSrc: req.file.filename,
+  //       },
+  //     },
+  //   },
+  //   { safe: true, upsert: true }
+  // );
 
   return res.redirect('back');
 

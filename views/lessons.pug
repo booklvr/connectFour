@@ -1,7 +1,7 @@
 extends base
 
 block content
-  main.main#main-classrooms
+  main.main#main-lessons
 
     +title-1('SavedGames')
 
@@ -9,12 +9,37 @@ block content
       a(href="/addLesson")
         i.fas.fa-plus
 
-    .container--lessons
-      ol
-        
-        each lesson in lessons 
-          li
-            a(href=`/lessons/${lesson._id}`)= lesson.title
+    .container.container__lessons
+      .container__lessons--header
+        .container__row.container__row--heading
+          .column.container__column-heading
+            .column--heading.asc#sort-title Title
+            .btn.btn--sort-arrow.hidden
+              i.fas.fa-caret-up
+          .column.container__column-heading
+            .column--heading.asc#sort-class Class
+            .btn.btn--sort-arrow.hidden
+              i.fas.fa-caret-up
+          .column.container__column-heading
+            .column--heading.asc#sort-chapter Chapter
+            .btn.btn--sort-arrow.hidden
+              i.fas.fa-caret-up
+          .column.container__column-heading
+            .column--heading.target.asc#sort-target Target
+            .btn.btn--sort-arrow.hidden
+              i.fas.fa-caret-up
+          .column.container__column-heading
+            .column--heading.asc#sort-createdAt Created At
+            .btn.btn--sort-arrow.hidden
+              i.fas.fa-caret-up
+          .column.container__column-heading
+            .column--heading.asc#sort-updatedAt Updated At
+            .btn.btn--sort-arrow.hidden
+              i.fas.fa-caret-up
+      .container.container__lessons--data
         
     
 
+  script.
+    const lessons=!{JSON.stringify(lessons)};
+    console.log(lessons);

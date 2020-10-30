@@ -2,7 +2,7 @@
 
 // import '@babel/polyfill';
 // polyfill for es6
-import "core-js/stable";
+import 'core-js/stable';
 import 'classlist-polyfill';
 
 // polyfill for fetch
@@ -10,7 +10,7 @@ import 'isomorphic-fetch';
 // pollyfill for .remove()
 import 'element-remove';
 
-import "regenerator-runtime/runtime";
+import 'regenerator-runtime/runtime';
 import '../sass/main.scss';
 
 import('./onStart/onStartController').then();
@@ -53,4 +53,9 @@ if (addLessonPage) {
 const lessonPage = document.getElementById('main-lesson');
 if (lessonPage) {
   import('./lesson/lessonController').then();
+}
+
+const lessonsPage = document.getElementById('main-lessons');
+if (lessonsPage) {
+  import('./lessons/lessonsController').then();
 }

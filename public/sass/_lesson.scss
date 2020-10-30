@@ -1,0 +1,118 @@
+#main-lesson {
+  background-color: pink;
+  .container--instructions {
+    p {
+      font-size: 2rem;
+      font-family: $font-main;
+    }
+  }
+
+  .form {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    // background-color: yellow;
+
+    .container--form {
+      // flex: 1;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      height: auto;
+      &-img {
+        // background-color: blue;
+        width: 20rem;
+        height: 20rem;
+        position: relative;
+
+        input[type='file'] {
+          display: none;
+        }
+
+        label {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 100%;
+          // padding: 2rem;
+          // text-align: center;
+          background-color: #f8f8f8;
+          border: 3px solid #eee;
+          border-radius: 7px;
+          z-index: 100;
+          overflow: hidden;
+          // transition: all 0.2s ease;
+          // user-select: none;
+          &:hover {
+            border-color: $color-purple;
+          }
+          &.hover {
+            border: 1px solid $color-purple;
+
+            // #start {
+            //   i.fa {
+            //     transform: scale(0.8);
+            //     opacity: 0.3;
+            //   }
+            // }
+          }
+          &.file-upload {
+            background-color: green;
+          }
+          img {
+            object-fit: cover;
+            width: 15rem;
+            height: 15rem;
+          }
+          .start {
+          }
+          .response {
+          }
+        }
+
+        // #start {
+        //   width: 100%;
+        //   &.hidden {
+        //     display: block;
+        //   }
+        //   i.fa {
+        //     font-size: 50%;
+        //     margin-bottom: 1rem;
+        //     transition: all 0.2s ease-in-out;
+        //   }
+        // }
+        // #response {
+        //   &.hidden {
+        //     display: none;
+        //   }
+        //   #messages {
+        //     margin-bottom: 0.5rem;
+        //   }
+        // }
+
+        // #file-image {
+        //   width: auto;
+        //   height: auto;
+        //   max-width: 200rem;
+        // }
+      }
+
+      &-question {
+        background-color: green;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+      }
+      textArea {
+        width: 100%;
+      }
+    }
+  }
+}

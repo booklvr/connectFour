@@ -17,7 +17,7 @@ const LessonSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
-    languageFocus: {
+    target: {
       type: String,
       trim: true,
     },

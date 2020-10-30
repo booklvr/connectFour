@@ -30,107 +30,98 @@
   }
 }
 
-.container--classrooms {
+.container__lessons {
   width: 120rem;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: space-between;
-  height: 100%;
-  position: relative;
-  margin-bottom: 2rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  .container__lessons--header,
+  .container__lessons--data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 
-  @include respond(px1300) {
-    width: 100%;
-    padding: 0 10rem;
-  }
+    width: 120rem;
 
-  .container--classroom {
-    @include centered;
+    .container__row {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      border-bottom: 1px solid $color-grey;
+      height: 5rem;
+      overflow: hidden;
+      padding-left: 5rem;
 
-    max-height: 40rem;
-    width: 27.75rem;
-    position: relative;
-    border: 1px solid $color-light-grey;
-    margin-bottom: 3rem;
-
-    @include respond(px1300) {
-      min-width: calc((100% - 6rem) / 3);
-
-      &:not(:nth-child(3n)) {
-        margin-right: 3rem;
-      }
-    }
-
-    @include respond(px1100) {
-      min-width: calc((100% - 3rem) / 2);
-
-      font-size: 0.2rem;
-
-      &:not(:nth-child(3n)) {
-        margin-right: 0;
-      }
-
-      &:not(:nth-child(2n)) {
-        margin-right: 3rem;
-      }
-    }
-
-    @include respond(px750) {
-      min-width: 100%;
-
-      &:not(:nth-child(2n)) {
-        margin-right: 0rem;
-      }
-    }
-
-    .trash-btn {
-      position: absolute;
-      top: 2rem;
-      left: 2rem;
-      display: none;
-    }
-
-    .class-title {
-      margin-top: 4.1rem;
-      margin-bottom: 2.8rem;
-      font-size: 2rem;
-      font-weight: bold;
-      font-family: $font-secondary;
-
-      a {
-        color: $color-blue;
-      }
-    }
-
-    .games {
-      @include centered;
-      padding-bottom: 2rem;
-      font-family: $font-secondary;
-      font-weight: 600;
-
-      .game {
-        width: 21.33rem;
-        text-align: center;
+      .column {
+        width: calc(100% / 6);
+        height: 5rem;
+        width: 25rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        overflow-x: hidden;
         font-size: 1.8rem;
-        color: $color-black;
-        margin: 1.25rem;
+        font-family: $font-secondary;
+      }
+
+      .column--heading {
+        font-family: $font-secondary;
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        line-height: 1;
+        color: $color-grey;
+        margin-right: 1rem;
+      }
+
+      .delete-saved-game-btn {
+        position: absolute;
+        right: 2rem;
+        display: none;
+      }
+
+      &:hover {
+        background-color: $color-light-grey;
         cursor: pointer;
 
-        &:not(:last-of-type) {
-          padding-bottom: 2rem;
-          border-bottom: 2px solid $color-light-grey;
-        }
-
-        &-link {
-          color: $color-black;
+        .btn {
+          @include centered;
         }
       }
     }
 
-    &:hover .trash-btn {
-      display: block;
+    .container__row--heading {
+      &:hover {
+        background-color: white;
+      }
+      .container__column-heading {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        margin-left: 1rem;
+        cursor: auto;
+
+        &:hover {
+          .column--heading {
+            cursor: pointer;
+            border-bottom: 1px solid $color-blue;
+          }
+        }
+
+        .btn--sort-arrow {
+          i {
+            color: $color-grey;
+          }
+        }
+      }
     }
   }
 }

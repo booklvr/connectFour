@@ -8,28 +8,45 @@ block content
 
     +title-1(`${lesson.title}`)
 
-    .container.container--form--add-questions
-      form.form#lesson-form(action=`/api/v1/lessons/${lesson._id}` autocomplete="off", method='post', enctype="multipart/form-data")
-        input(type="hidden" name="lessonId", value=lesson._id)
-        .form__group
-          
-          
-            label.form__label(for="add-question") Add the target language here.
-            textArea.form__input#add-question(form="lesson-form" name="question" autofocus required)
-        .form__group
+    .container--instructions 
+      p Please add at least seven questions to play the game. 
+      P Please upload pictures only in ajpg, jpeg, or png format.
 
-          
-            label(for="add-img" tabindex="0") Add An Image
-            input#add-img(type="file" name="uploadImage" ) 
+    
+    h3 My Questions
+
+    form.form#lesson-form(action=`/api/v1/lessons/${lesson._id}` autocomplete="off", method='post', enctype="multipart/form-data")
+      input(type="hidden" name="lessonId", value=lesson._id)
+      .container--form
+        .container--form-img
+          input#file-upload(type='file', name='uploadImage' accept="image/*")
+          label#file-drag(for='file-upload')
+            img#file-image.hidden(src="", alt="Preview")
+            div.start
+              i.fa.fa-download
+              div Select a file or drag here
+              div#not-image.hidden Please select an image
+            div.response.hidden
+              #messages
+              progress.progress#file-progress(value="0")
+                span 0
 
 
-        button.btn.btn__rnd.btn__rnd--md.btn--blue#submit-add-question-btn(type="submit" tabindex="0")
-          i.fas.fa-plus
+
+
+          //- label(for="add-img") Add An Image
+          //- input#add-img(type="file" name="uploadImage" ) 
+        .container--form-question
+          //- label.form__label(for="add-question") Question
+          textarea#add-question(name="question" autofocus required placeholder="add the target language here")
+
+      button.btn.btn__rnd.btn__rnd--md.btn--blue#submit-add-question-btn(type="submit" tabindex="0")
+        i.fas.fa-plus
 
     each question in lesson.questions
       .container--question
         p= question.question
         img(src=`/img/uploads/resized/${question.imageSrc}`, alt="")
 
-    a(href=`/connectFour/${lesson._id}`) Play Connect Four
+    a.btn.btn__lg.btn--blue(href=`/connectFour/${lesson._id}`) Play Connect Four
     
