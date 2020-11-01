@@ -8,6 +8,8 @@ var controller = (function (UI) {
     var DOMStrings = UI.getDOMStrings();
 
     const [columns, rows] = UI.getColumnsAndRows();
+    const imgRow = document.querySelectorAll(DOMStrings.containerImage);
+    const exitModalBtns = document.querySelectorAll(DOMStrings.exitModalBtn);
 
     // SETUP DOM
     var DOM = {
@@ -15,7 +17,6 @@ var controller = (function (UI) {
       statusSpan: document.querySelector(DOMStrings.statusSpan),
       undoButton: document.querySelector(DOMStrings.undoButton),
     };
-    
 
     // EVENT LISTENERS
     for (const row of rows) {
@@ -25,6 +26,13 @@ var controller = (function (UI) {
         cell.addEventListener('click', UI.handleCellClick);
       }
     }
+    for (const img of imgRow) {
+      img.addEventListener('click', UI.openQuestionModal);
+    }
+    for (const btn of exitModalBtns) {
+      btn.addEventListener('click', UI.closeQuestionModal);
+    }
+
     DOM.resetButton.addEventListener('click', UI.resetGame);
     DOM.undoButton.addEventListener('click', UI.undoLastMove);
   };

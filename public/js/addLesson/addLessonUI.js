@@ -8,7 +8,7 @@ const addLessonUI = (function () {
     // BY ID
     title: '#title',
     class: '#class',
-    target: '#target',
+    languageFocus: '#languageFocus',
     chapter: '#chapter',
     submitAddLessonBtn: '#submit-add-lesson-btn',
   };
@@ -17,8 +17,10 @@ const addLessonUI = (function () {
     title: document.querySelector(DOMStrings.title),
     class: document.querySelector(DOMStrings.class),
     chapter: document.querySelector(DOMStrings.chapter),
-    target: document.querySelector(DOMStrings.target),
-    submitAddLessonBtn: document.querySelector(DOMStrings.submitAddLessonBtn),
+    languageFocus: document.querySelector(DOMStrings.languageFocus),
+    submitAddLessonBtn: document.querySelector(
+      DOMStrings.submitAddLessonBtn
+    ),
   };
 
   // HELPER FUNCTIONS
@@ -43,7 +45,7 @@ const addLessonUI = (function () {
             title: DOM.title.value,
             class: DOM.class.value,
             chapter: DOM.chapter.value,
-            target: DOM.target.value,
+            languageFocus: DOM.chapter.focus,
           },
         });
 

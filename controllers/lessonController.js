@@ -14,6 +14,7 @@ exports.setLessonOwnership = (req, res, next) => {
 };
 
 exports.updateLesson = catchAsync(async (req, res, next) => {
+  console.log(req.file);
   const { filename: image } = req.file;
 
   await sharp(req.file.path)

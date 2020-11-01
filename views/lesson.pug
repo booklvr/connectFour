@@ -12,15 +12,15 @@ block content
       p Please add at least seven questions to play the game. 
       P Please upload pictures only in ajpg, jpeg, or png format.
 
-    
+
     h3 My Questions
 
     form.form#lesson-form(action=`/api/v1/lessons/${lesson._id}` autocomplete="off", method='post', enctype="multipart/form-data")
       input(type="hidden" name="lessonId", value=lesson._id)
       .container--form
         .container--form-img
-          input#file-upload(type='file', name='uploadImage' accept="image/*")
-          label#file-drag(for='file-upload')
+          input#file-input(type='file', name='uploadImage' accept="image/*")
+          label#file-drag(for='file-input')
             img#file-image.hidden(src="", alt="Preview")
             div.start
               i.fa.fa-download
@@ -43,10 +43,16 @@ block content
       button.btn.btn__rnd.btn__rnd--md.btn--blue#submit-add-question-btn(type="submit" tabindex="0")
         i.fas.fa-plus
 
-    each question in lesson.questions
-      .container--question
-        p= question.question
-        img(src=`/img/uploads/resized/${question.imageSrc}`, alt="")
+    .container--questions
+      each question, index in lesson.questions
+        .container--question
+          .container--image
+          img(src=`/img/uploads/resized/${question.imageSrc}`, alt="")
+          .question
+            p.question-number= `Question ${index + 1}`
+            p= question.question
 
-    a.btn.btn__lg.btn--blue(href=`/connectFour/${lesson._id}`) Play Connect Four
-    
+    //- a.btn.btn__lg.btn--blue#play-button(href=`/connectFour/${lesson._id}`) Play Connect Four
+    button.btn.btn__lg.btn--blue#play-button Play Connect Four
+  script.
+    const lesson=!{JSON.stringify(lesson)};

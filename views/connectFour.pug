@@ -59,8 +59,22 @@ block content
 
       .container--images 
         each question, index in lesson.questions 
-          .container--image(class=`img-${index}`)
-            img(src=`/img/uploads/resized/${question.imageSrc}`, alt="")
+          .container--image(id=`img-${index}`)
+            button.question-modal-btn
+              img(src=`/img/uploads/resized/${question.imageSrc}`, alt="")
+
+      .container--modals 
+
+        each question, index in lesson.questions     
+
+          .container--modal.hidden(id=`modal-${index}`)
+            h2 Let's Review
+            button.btn.btn__md.btn__rnd.exit-modal-btn(id=`modal-btn-${index}`)
+              i.fa.fa-times
+            img.modal-image(src=`/img/uploads/resized/${question.imageSrc}` alt='')
+            div.container--modal-question
+              p.modal-question= question.question
+
       .game-buttons
         button.undo Undo
         button.reset Reset

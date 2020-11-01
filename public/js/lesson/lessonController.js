@@ -11,7 +11,8 @@ var controller = (function (UI) {
       addQuestionBtn: document.querySelector(DOMStrings.addQuestionBtn),
       lessonForm: document.querySelector(DOMStrings.lessonForm),
       fileDrag: document.querySelector(DOMStrings.fileDrag),
-      fileSelect: document.querySelector(DOMStrings.fileSelect),
+      fileInput: document.querySelector(DOMStrings.fileInput),
+      playBtn: document.querySelector(DOMStrings.playBtn),
       // fileSelect: document.querySelector(DOMStrings.fileSelect),
     };
 
@@ -21,7 +22,8 @@ var controller = (function (UI) {
     DOM.fileDrag.addEventListener('dragover', UI.fileDragHover, false);
     DOM.fileDrag.addEventListener('dragleave', UI.fileDragHover, false);
     DOM.fileDrag.addEventListener('drop', UI.fileSelectHandler, false);
-    DOM.fileSelect.addEventListener('change', UI.fileSelectHandler);
+    DOM.fileInput.addEventListener('change', UI.fileSelectHandler);
+    DOM.playBtn.addEventListener('click', UI.playConnectFour);
     // DOM.fileSelect.addEventListener('change', fileSelectHandler, false);
   };
 
