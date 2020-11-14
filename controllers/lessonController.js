@@ -8,7 +8,7 @@ const Lesson = require('../models/lessonModel');
 const factory = require('./handlerFactory');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
-const cloudinary = require('../config/cloudinary');
+const { cloudinary } = require('../config/cloudinary');
 
 exports.setLessonOwnership = (req, res, next) => {
   // get user from isLoggedIn middleware
@@ -18,7 +18,7 @@ exports.setLessonOwnership = (req, res, next) => {
 
 exports.updateLesson = catchAsync(async (req, res, next) => {
   console.log('you are doing a great job');
-
+  console.log(req.file.buffer);
   // shrink file size
   const processedImage = await sharp(req.file.buffer)
     .resize({ width: 300, height: 300 })
@@ -49,7 +49,7 @@ exports.updateLesson = catchAsync(async (req, res, next) => {
 
   const question = {
     question: req.body.question,
-    imageSrc: imageData,
+    imageSrc: imageData.url,
   };
 
   const lesson = await Lesson.findById(req.body.lessonId);
