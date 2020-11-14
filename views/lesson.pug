@@ -47,7 +47,7 @@ block content
       each question, index in lesson.questions
         .container--question
           .container--image
-          img(src=`/img/uploads/resized/${question.imageSrc}`, alt="")
+          img(src=question.imageSrc, alt="")
           .question
             p.question-number= `Question ${index + 1}`
             p= question.question

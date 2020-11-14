@@ -72,7 +72,7 @@ const lessonUI = (function () {
     }
   };
 
-  const uploadFile = (file) => {};
+  // const uploadFile = (file) => {};
 
   // RETURN FUNCTIONS
   return {
