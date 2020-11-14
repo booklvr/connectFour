@@ -1,7 +1,7 @@
 // const User = require('../models/userModel');
 const fs = require('fs');
-// const path = require('path');
-// const sharp = require('sharp');
+const path = require('path');
+const sharp = require('sharp');
 const streamifier = require('streamifier');
 
 const Lesson = require('../models/lessonModel');
@@ -18,6 +18,15 @@ exports.setLessonOwnership = (req, res, next) => {
 
 exports.updateLesson = catchAsync(async (req, res, next) => {
   console.log('you are doing a great job');
+
+  // shrink file size
+  const processedImage = await sharp(req.file.buffer)
+    .resize({ width: 300, height: 300 })
+    .png()
+    .toBuffer();
+
+  req.file.processedImage = processedImage;
+
   let streamUpload = (req) => {
     return new Promise((resolve, reject) => {
       let stream = cloudinary.uploader.upload_stream((error, result) => {
@@ -28,7 +37,7 @@ exports.updateLesson = catchAsync(async (req, res, next) => {
         }
       });
 
-      streamifier.createReadStream(req.file.buffer).pipe(stream);
+      streamifier.createReadStream(req.file.processedImage).pipe(stream);
     });
   };
 
@@ -55,12 +64,6 @@ exports.updateLesson = catchAsync(async (req, res, next) => {
 // exports.updateLesson = catchAsync(async (req, res, next) => {
 //   console.log(req.file);
 //   const { filename: image } = req.file;
-
-//   await sharp(req.file.path)
-//     .resize({ width: 100, height: 100 })
-//     .png()
-//     .toFile(path.resolve(req.file.destination, 'resized', image));
-//   fs.unlinkSync(req.file.path);
 
 //   // add Question to lesson question array
 
