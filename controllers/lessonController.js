@@ -2,15 +2,13 @@
 const fs = require('fs');
 const path = require('path');
 const sharp = require('sharp');
-<<<<<<< HEAD
 const streamifier = require('streamifier');
 
-=======
->>>>>>> parent of 8e5422c... upload image with cloudinary
 const Lesson = require('../models/lessonModel');
 const factory = require('./handlerFactory');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
+const cloudinary = require('../config/cloudinary');
 
 exports.setLessonOwnership = (req, res, next) => {
   // get user from isLoggedIn middleware
@@ -19,7 +17,6 @@ exports.setLessonOwnership = (req, res, next) => {
 };
 
 exports.updateLesson = catchAsync(async (req, res, next) => {
-<<<<<<< HEAD
   console.log('you are doing a great job');
 
   // shrink file size
@@ -30,9 +27,9 @@ exports.updateLesson = catchAsync(async (req, res, next) => {
 
   req.file.processedImage = processedImage;
 
-  let streamUpload = (req) => {
+  const streamUpload = (req) => {
     return new Promise((resolve, reject) => {
-      let stream = cloudinary.uploader.upload_stream((error, result) => {
+      const stream = cloudinary.uploader.upload_stream((error, result) => {
         if (result) {
           resolve(result);
         } else {
@@ -43,22 +40,16 @@ exports.updateLesson = catchAsync(async (req, res, next) => {
       streamifier.createReadStream(req.file.processedImage).pipe(stream);
     });
   };
-=======
-  console.log(req.file);
-  const { filename: image } = req.file;
->>>>>>> parent of 8e5422c... upload image with cloudinary
 
-  await sharp(req.file.path)
-    .resize({ width: 100, height: 100 })
-    .png()
-    .toFile(path.resolve(req.file.destination, 'resized', image));
-  fs.unlinkSync(req.file.path);
+  const imageData = await streamUpload(req);
+
+  console.log(imageData);
 
   // add Question to lesson question array
 
   const question = {
     question: req.body.question,
-    imageSrc: req.file.filename,
+    imageSrc: imageData,
   };
 
   const lesson = await Lesson.findById(req.body.lessonId);
@@ -82,23 +73,7 @@ exports.updateLesson = catchAsync(async (req, res, next) => {
   //   { safe: true, upsert: true }
   // );
 
-<<<<<<< HEAD
-// exports.updateLesson = catchAsync(async (req, res, next) => {
-//   console.log(req.file);
-//   const { filename: image } = req.file;
-
-//   // add Question to lesson question array
-=======
   return res.redirect('back');
->>>>>>> parent of 8e5422c... upload image with cloudinary
-
-  // res.status(200).json({
-  //   status: 'success',
-
-  //   data: {
-  //     data: buffer,
-  //   },
-  // });
 });
 
 exports.getAllLessons = factory.getAll(Lesson);
