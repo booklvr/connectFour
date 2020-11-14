@@ -61,7 +61,7 @@ block content
         each question, index in lesson.questions 
           .container--image(id=`img-${index}`)
             button.question-modal-btn
-              img(src=question.imageSrc, alt="")
+              img(src=`/img/uploads/resized/${question.imageSrc}`, alt="")
 
       .container--modals 
 
@@ -71,7 +71,7 @@ block content
             h2 Let's Review
             button.btn.btn__md.btn__rnd.exit-modal-btn(id=`modal-btn-${index}`)
               i.fa.fa-times
-            img.modal-image(src=question.imageSrc alt='')
+            img.modal-image(src=`/img/uploads/resized/${question.imageSrc}` alt='')
             div.container--modal-question
               p.modal-question= question.question
 
