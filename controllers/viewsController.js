@@ -91,6 +91,22 @@ exports.addLesson = (req, res) => {
 exports.connectFour = catchAsync(async (req, res, next) => {
   const lesson = await Lesson.findById(req.params.id);
 
+  /* Randomize array in-place using Durstenfeld shuffle algorithm */
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      let temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+  }
+
+  // shuffle array to always get back different objects
+  shuffleArray(lesson.questions);
+
+  // only send 7 questions to the frontend
+  lesson.questions = lesson.questions.slice(0, 7);
+
   res.status(200).render('connectFour', {
     title: 'connectFour',
     lesson,
