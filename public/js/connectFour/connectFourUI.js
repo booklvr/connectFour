@@ -14,6 +14,9 @@ const connectFourUI = (function () {
     containerImage: '.container--image',
     containerModals: '.container--modal',
     exitModalBtn: '.exit-modal-btn',
+    fullScreenButton: '.full-screen',
+    gameBoard: '.game-board',
+    gameContainer: '.container--game',
     // BY ID
     // email: '#email',
   };
@@ -22,6 +25,8 @@ const connectFourUI = (function () {
   const DOM = {
     resetButton: document.querySelector(DOMStrings.resetButton),
     statusSpan: document.querySelector(DOMStrings.statusSpan),
+    gameContainer: document.querySelector(DOMStrings.gameContainer),
+    gameBoard: document.querySelector(DOMStrings.gameBoard),
   };
 
   const allCells = document.querySelectorAll(DOMStrings.allCells);
@@ -455,6 +460,19 @@ const connectFourUI = (function () {
       const modalIndex = exitBtn.id.split('-').pop();
       console.log(modalIndex);
       modals[modalIndex].classList.add('hidden');
+    },
+    toggleFullScreen: (e) => {
+      console.log(e.target);
+      if (DOM.gameContainer.requestFullscreen) {
+        DOM.gameContainer.requestFullscreen();
+      } else if (DOM.gameContainer.webkitRequestFullscreen) {
+        /* Safari */
+        DOM.gameContainer.webkitRequestFullscreen();
+      } else if (DOM.gameContainer.msRequestFullscreen) {
+        /* IE11 */
+        DOM.gameContainer.msRequestFullscreen();
+      }
+      DOM.gameBoard.classList.add('full-screen-game-board');
     },
   };
 })();

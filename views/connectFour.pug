@@ -7,6 +7,13 @@ block content
 
     .container.container--game
       .game-board
+        .game-buttons
+          button.full-screen Full Screen
+          button.undo Undo
+          button.reset Reset
+          span.status
+
+
         .cell.row-top.col-0
         .cell.row-top.col-1
         .cell.row-top.col-2
@@ -56,12 +63,17 @@ block content
         .cell.row-5.col-4.bottom-border
         .cell.row-5.col-5.bottom-border
         .cell.row-5.col-6.bottom-border.right-border
-
-      .container--images 
         each question, index in lesson.questions 
           .container--image(id=`img-${index}`)
             button.question-modal-btn
               img(src=question.imageSrc alt="")
+
+      
+      //- .container--images 
+      //-   each question, index in lesson.questions 
+      //-     .container--image(id=`img-${index}`)
+      //-       button.question-modal-btn
+      //-         img(src=question.imageSrc alt="")
 
       .container--modals 
 
@@ -75,9 +87,6 @@ block content
             div.container--modal-question
               p.modal-question= question.question
 
-      .game-buttons
-        button.undo Undo
-        button.reset Reset
-        span.status
+      
 
     //- <script src="app.js"></script>

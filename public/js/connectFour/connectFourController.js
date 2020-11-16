@@ -16,6 +16,7 @@ var controller = (function (UI) {
       resetButton: document.querySelector(DOMStrings.resetButton),
       statusSpan: document.querySelector(DOMStrings.statusSpan),
       undoButton: document.querySelector(DOMStrings.undoButton),
+      fullScreenButton: document.querySelector(DOMStrings.fullScreenButton),
     };
 
     // EVENT LISTENERS
@@ -35,6 +36,7 @@ var controller = (function (UI) {
 
     DOM.resetButton.addEventListener('click', UI.resetGame);
     DOM.undoButton.addEventListener('click', UI.undoLastMove);
+    DOM.fullScreenButton.addEventListener('click', UI.toggleFullScreen);
   };
 
   return {

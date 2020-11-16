@@ -50,8 +50,4 @@ router.patch(
   authController.updatePassword
 );
 
-
-
-
-
 module.exports = router;
