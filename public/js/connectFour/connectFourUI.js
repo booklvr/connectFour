@@ -376,6 +376,23 @@ const connectFourUI = (function () {
     imageRow[columnIndex].classList.remove('hover');
   };
 
+  const getFullscreenElement = (el) => {
+    return (
+      el.fullscreenElement ||
+      el.webkitFullscreenElement ||
+      el.mozFullscreenElement ||
+      el.msFullscreenElement
+    );
+  };
+
+  const toggleFullScreen = (el) => {
+    if (getFullScreen(el)) {
+      el.exitFullScreen();
+    } else {
+      el.requestFullScreen().catch(console.log);
+    }
+  };
+
   // RETURN FUNCTIONS
   return {
     getDOMStrings: () => DOMStrings,
@@ -462,18 +479,24 @@ const connectFourUI = (function () {
       modals[modalIndex].classList.add('hidden');
     },
     toggleFullScreen: (e) => {
-      console.log(e.target);
-      if (DOM.gameContainer.requestFullscreen) {
-        DOM.gameContainer.requestFullscreen();
-      } else if (DOM.gameContainer.webkitRequestFullscreen) {
-        /* Safari */
-        DOM.gameContainer.webkitRequestFullscreen();
-      } else if (DOM.gameContainer.msRequestFullscreen) {
-        /* IE11 */
-        DOM.gameContainer.msRequestFullscreen();
+      if (getFullScreen(DOM.gameContainer)) {
+        DOM.gameContainer.exitFullScreen(DOM.gameContainer);
+      } else {
+        DOM.gameContainer.requestFullScreen().catch(console.log);
       }
-      DOM.gameBoard.classList.add('full-screen-game-board');
     },
+    //   console.log(e.target);
+    //   if (DOM.gameContainer.requestFullscreen) {
+    //     DOM.gameContainer.requestFullscreen();
+    //   } else if (DOM.gameContainer.webkitRequestFullscreen) {
+    //     /* Safari */
+    //     DOM.gameContainer.webkitRequestFullscreen();
+    //   } else if (DOM.gameContainer.msRequestFullscreen) {
+    //     /* IE11 */
+    //     DOM.gameContainer.msRequestFullscreen();
+    //   }
+    //   DOM.gameBoard.classList.add('full-screen-game-board');
+    // },
   };
 })();
 
