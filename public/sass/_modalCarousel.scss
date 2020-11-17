@@ -65,6 +65,8 @@
       z-index: 500;
       height: 100%;
       @include centered;
+      transition: transform 1000ms ease;
+      animation-duration: 1000ms;
     }
 
     .active {
@@ -88,47 +90,6 @@
       margin: 0 1rem;
     }
   }
-
-  .container--modal {
-    // position: absolute;
-    // // top: -714px;
-    // left: 0;
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
-    // justify-content: flex-start;
-    // // position: fixed;
-    // // display: block;
-    // width: 100%;
-    // height: 99%;
-    // background-color: #4370f1;
-    // border-radius: 10px;
-    // z-index: 10000;
-
-    h2 {
-      margin-top: 10rem;
-      margin-bottom: 5rem;
-      font-size: 3rem;
-    }
-
-    .modal-image {
-      height: 20rem;
-      width: 20rem;
-      margin-bottom: 5rem;
-      background-color: pink;
-    }
-
-    .container--modal-question {
-      width: 75%;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      p {
-        font-size: 2rem;
-      }
-    }
-  }
 }
 
 // animations
@@ -143,7 +104,6 @@
 }
 
 .slideOutLeft {
-  border: 1px solid blue;
   transform: translateX(-100%);
 }
 

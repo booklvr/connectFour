@@ -80,26 +80,35 @@ const modalCarouselUI = (function () {
       // modals[modalIndex].classList.add('hidden');
     },
     changeSlide: (forward) => {
-      console.log(forward);
-      console.log('clicked that shit');
+      console.log('CHANGE_SLIDE_FUNCTION');
+
       if (clickable) {
+        console.log('IF CLICKABLE', clickable);
+        clickable = false;
         if (forward) {
+          console.log('IF_FORWARD', forward);
           console.log('active slide index', activeSlideIndex);
 
-          console.log(DOM.carouselSlides);
+          // 
+          // console.log(DOM.carouselSlides);
           newActive = DOM.carouselSlides[(activeSlideIndex + 1) % 7];
+          console.log('new active', newActive);
           active.classList.add('slideOutLeft');
+          newActive.classList.remove('hidden');
           newActive.classList.add('slideInRight', 'active');
         } else {
         }
       }
     },
     activeSlideTransitionEnd: (e) => {
+      console.log('ACTIVE_SLIDE_TRANSITION_END_FUNCTION');
       console.log('e.target', e.target);
       console.log('active', active);
+      console.log(e.target === active);
       if (e.target === active && !clickable) {
         clickable = true;
-        active.className = '.carousel-slide.hidden';
+        active.className = '.carousel-slide';
+        active.classList.add('hidden');
       }
     },
   };
