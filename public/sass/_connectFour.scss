@@ -116,11 +116,6 @@ h1 {
         margin: calc(100vh / 8 * 0.1) 0;
       }
     }
-
-    .container--modals > modal {
-      background-color: #fff;
-      top: calc((v100vh / 8));
-    }
   }
 
   .cell {
@@ -216,7 +211,7 @@ h1 {
   }
 
   .container--image {
-    transition: width 0.2s;
+    // transition: width 0.2s;
 
     &:hover > button > img {
       width: 110%;

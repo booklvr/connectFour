@@ -36,7 +36,7 @@ const modalCarouselUI = (function () {
   const SLIDE_TIME = 500;
   let clickable = true;
   let active = null;
-  let currentSlideIndex = null;
+  let activeSlideIndex = null;
   let newActive = null;
 
   // HELPER FUNCTIONS
@@ -58,7 +58,7 @@ const modalCarouselUI = (function () {
 
     openModalCarousel: (e) => {
       // get index id off image container
-      const currentSlideIndex = e.target.parentElement.parentElement.id
+      activeSlideIndex = e.target.parentElement.parentElement.id
         .split('-')
         .pop();
 
@@ -67,7 +67,7 @@ const modalCarouselUI = (function () {
       DOM.modalsContainer.classList.remove('hidden');
 
       // reveal targeted image
-      active = DOM.carouselSlides[currentSlideIndex];
+      active = DOM.carouselSlides[activeSlideIndex];
       active.classList.remove('hidden');
     },
     closeModalCarousel: (e) => {
@@ -80,11 +80,27 @@ const modalCarouselUI = (function () {
       // modals[modalIndex].classList.add('hidden');
     },
     changeSlide: (forward) => {
-      // if (clickable) {
-      //   console.log(active);
-      //   console.log(currentSlideIndex);
-      //   clickable = false;
-      // }
+      console.log(forward);
+      console.log('clicked that shit');
+      if (clickable) {
+        if (forward) {
+          console.log('active slide index', activeSlideIndex);
+
+          console.log(DOM.carouselSlides);
+          newActive = DOM.carouselSlides[(activeSlideIndex + 1) % 7];
+          active.classList.add('slideOutLeft');
+          newActive.classList.add('slideInRight', 'active');
+        } else {
+        }
+      }
+    },
+    activeSlideTransitionEnd: (e) => {
+      console.log('e.target', e.target);
+      console.log('active', active);
+      if (e.target === active && !clickable) {
+        clickable = true;
+        active.className = '.carousel-slide.hidden';
+      }
     },
   };
 })();
