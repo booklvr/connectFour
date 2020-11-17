@@ -42,6 +42,7 @@ if (updateUserPage) {
 
 const connectFourPage = document.getElementById('connect-four');
 if (connectFourPage) {
+  import('./modalCarousel/modalCarouselController').then();
   import('./connectFour/connectFourController').then();
 }
 

@@ -9,7 +9,6 @@ var controller = (function (UI) {
 
     const [columns, rows] = UI.getColumnsAndRows();
     const imgRow = document.querySelectorAll(DOMStrings.containerImage);
-    const exitModalBtns = document.querySelectorAll(DOMStrings.exitModalBtn);
 
     // SETUP DOM
     var DOM = {
@@ -27,16 +26,32 @@ var controller = (function (UI) {
         cell.addEventListener('click', UI.handleCellClick);
       }
     }
-    for (const img of imgRow) {
-      img.addEventListener('click', UI.openQuestionModal);
-    }
-    for (const btn of exitModalBtns) {
-      btn.addEventListener('click', UI.closeQuestionModal);
-    }
 
     DOM.resetButton.addEventListener('click', UI.resetGame);
     DOM.undoButton.addEventListener('click', UI.undoLastMove);
     DOM.fullScreenButton.addEventListener('click', UI.toggleFullScreen);
+    if (document.addEventListener) {
+      document.addEventListener(
+        'fullscreenchange',
+        UI.onFullScreenChange,
+        false
+      );
+      document.addEventListener(
+        'mozfullscreenchange',
+        UI.onFullScreenChange,
+        false
+      );
+      document.addEventListener(
+        'MSFullscreenChange',
+        UI.onFullScreenChange,
+        false
+      );
+      document.addEventListener(
+        'webkitfullscreenchange',
+        UI.onFullScreenChange,
+        false
+      );
+    }
   };
 
   return {

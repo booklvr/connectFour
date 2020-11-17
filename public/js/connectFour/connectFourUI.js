@@ -8,17 +8,19 @@ const connectFourUI = (function () {
 
     allCells: '.cell:not(.row-top)',
     topCells: '.cell.row-top',
-    resetButton: '.reset',
-    undoButton: '.undo',
+    resetButton: '.reset-btn',
+    undoButton: '.undo-btn',
+    fullScreenButton: '.full-screen-btn',
     statusSpan: '.status',
     containerImage: '.container--image',
-    containerModals: '.container--modal',
-    exitModalBtn: '.exit-modal-btn',
-    fullScreenButton: '.full-screen',
+
     gameBoard: '.game-board',
     gameContainer: '.container--game',
     // BY ID
     // email: '#email',
+
+    //BY TYPE
+    // body: 'body',
   };
 
   // DOM
@@ -27,12 +29,14 @@ const connectFourUI = (function () {
     statusSpan: document.querySelector(DOMStrings.statusSpan),
     gameContainer: document.querySelector(DOMStrings.gameContainer),
     gameBoard: document.querySelector(DOMStrings.gameBoard),
+    containerModals: document.querySelector(DOMStrings.containerModals),
+    // body: document.querySelector(DOMStrings.body),
   };
 
   const allCells = document.querySelectorAll(DOMStrings.allCells);
   const topCells = document.querySelectorAll(DOMStrings.topCells);
   const imageRow = document.querySelectorAll(DOMStrings.containerImage);
-  const modals = document.querySelectorAll(DOMStrings.containerModals);
+  const modals = document.querySelectorAll(DOMStrings.containerModal);
   const exitModalBtn = document.querySelector(DOMStrings.exitModalBtn);
 
   // columns
@@ -178,7 +182,7 @@ const connectFourUI = (function () {
   //VARIABLES
   let gameIsLive = true;
   let yellowIsNext = true;
-  let lastCell = null;
+  let lastMoveList = [];
 
   // HELPER FUNCTIONS
 
@@ -235,6 +239,8 @@ const connectFourUI = (function () {
       cell.classList.add('win');
     }
     DOM.statusSpan.textContent = `${yellowIsNext ? 'Yellow' : 'Red'} has won!`;
+    DOM.statusSpan.classList.remove('hidden');
+    DOM.statusSpan.classList.add(`${yellowIsNext ? 'yellow' : 'red'}`);
     return true;
   };
 
@@ -377,21 +383,22 @@ const connectFourUI = (function () {
   };
 
   const getFullscreenElement = (el) => {
+    console.log('GET FULL SCREEN ELEMENT FUNCTION');
     return (
-      el.fullscreenElement ||
-      el.webkitFullscreenElement ||
-      el.mozFullscreenElement ||
-      el.msFullscreenElement
+      document.fullscreenElement ||
+      document.webkitFullscreenElement ||
+      document.mozFullscreenElement ||
+      document.msFullscreenElement
     );
   };
 
-  const toggleFullScreen = (el) => {
-    if (getFullScreen(el)) {
-      el.exitFullScreen();
-    } else {
-      el.requestFullScreen().catch(console.log);
-    }
-  };
+  // const toggleFullScreen = (el) => {
+  //   if (getFullScreen(el)) {
+  //     el.exitFullScreen();
+  //   } else {
+  //     el.requestFullScreen().catch(console.log);
+  //   }
+  // };
 
   // RETURN FUNCTIONS
   return {
@@ -419,12 +426,15 @@ const connectFourUI = (function () {
     handleCellClick: (e) => {
       if (!gameIsLive) return;
       const cell = e.target;
-      lastCell = cell;
+
       const [rowIndex, colIndex] = getCellLocation(cell);
 
       const openCell = getFirstOpenCellForColumn(colIndex);
 
       if (!openCell) return;
+
+      // add the cell move list for undo function
+      lastMoveList.push(openCell);
 
       openCell.classList.add(yellowIsNext ? 'yellow' : 'red');
       checkStatusOfGame(openCell);
@@ -447,8 +457,14 @@ const connectFourUI = (function () {
       gameIsLive = true;
       yellowIsNext = true;
       DOM.statusSpan.textContent = '';
+      DOM.statusSpan.classList.add('hidden');
+      DOM.statusSpan.classList.remove(`yellow`);
+      DOM.statusSpan.classList.remove('red');
     },
     undoLastMove: () => {
+      console.log('UNDO LAST MOVE FUNCTION');
+      const lastCell = lastMoveList.pop();
+      console.log(lastCell);
       yellowIsNext = !yellowIsNext;
       lastCell.classList.remove('red');
       lastCell.classList.remove('yellow');
@@ -462,27 +478,43 @@ const connectFourUI = (function () {
             cell.classList.remove('win');
           }
         }
+
+        DOM.statusSpan.classList.add('hidden');
+        DOM.statusSpan.classList.remove(`yellow`);
+        DOM.statusSpan.classList.remove('red');
       }
     },
-    openQuestionModal: (e) => {
-      const imgCell = e.target.parentElement.parentElement;
-      const modalIndex = imgCell.id.split('-').pop();
-      console.log(modalIndex);
-      console.log(modals[modalIndex]);
-      modals[modalIndex].classList.remove('hidden');
-    },
-    closeQuestionModal: (e) => {
-      console.log(e.target);
-      const exitBtn = e.target.parentElement;
-      const modalIndex = exitBtn.id.split('-').pop();
-      console.log(modalIndex);
-      modals[modalIndex].classList.add('hidden');
-    },
+    // openQuestionModal: (e) => {
+    //   DOM.body.classList.add('modal-visible');
+    //   DOM.containerModals.classList.remove('hidden');
+    //   const imgCell = e.target.parentElement.parentElement;
+    //   const modalIndex = imgCell.id.split('-').pop();
+    //   console.log(modalIndex);
+    //   console.log(modals[modalIndex]);
+    //   modals[modalIndex].classList.remove('hidden');
+    // },
+    // closeQuestionModal: (e) => {
+    //   console.log(e.target);
+    //   const exitBtn = e.target.parentElement;
+    //   const modalIndex = exitBtn.id.split('-').pop();
+    //   console.log(modalIndex);
+    //   modals[modalIndex].classList.add('hidden');
+    // },
     toggleFullScreen: (e) => {
-      if (getFullScreen(DOM.gameContainer)) {
-        DOM.gameContainer.exitFullScreen(DOM.gameContainer);
+      if (getFullscreenElement(DOM.gameContainer)) {
+        document.exitFullscreen().catch(console.log);
+        // DOM.gameBoard.classList.remove('full-screen-game-board');
       } else {
-        DOM.gameContainer.requestFullScreen().catch(console.log);
+        DOM.gameContainer.requestFullscreen().catch(console.log);
+        // DOM.gameBoard.classList.add('full-screen-game-board');
+      }
+    },
+    onFullScreenChange: (e) => {
+      console.log('EXIT HANDLER FUNCTION');
+      if (getFullscreenElement(DOM.gameContainer)) {
+        DOM.gameBoard.classList.add('full-screen-game-board');
+      } else {
+        DOM.gameBoard.classList.remove('full-screen-game-board');
       }
     },
     //   console.log(e.target);
