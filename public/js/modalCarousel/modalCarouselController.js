@@ -8,7 +8,7 @@ var controller = (function (UI) {
     var DOMStrings = UI.getDOMStrings();
 
     const imgRow = document.querySelectorAll(DOMStrings.containerImage);
-    console.log(imgRow);
+    // console.log(imgRow);
 
     // SETUP DOM
     var DOM = {

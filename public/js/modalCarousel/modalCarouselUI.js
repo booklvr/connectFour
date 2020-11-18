@@ -14,6 +14,7 @@ const modalCarouselUI = (function () {
     carouselArrowLeft: '.carousel-arrow-left',
     carouselArrowRight: '.carousel-arrow-right',
     exitModalBtn: '.exit-modal-btn',
+    carouselIndexBtns: '.carousel-index-btn',
 
     // BY ID
 
@@ -41,16 +42,16 @@ const modalCarouselUI = (function () {
 
   // HELPER FUNCTIONS
 
-  const initSlider = () => {
-    carouselSlides.forEach((slide) => {
-      slide.setAttribute(
-        'style',
-        `transition: transform ${SLIDE_TIME}ms ease;
-                      animation-duration: ${SLIDE_TIME}ms
-        `
-      );
-    });
-  };
+  // const initSlider = () => {
+  //   carouselSlides.forEach((slide) => {
+  //     slide.setAttribute(
+  //       'style',
+  //       `transition: transform ${SLIDE_TIME}ms ease;
+  //                     animation-duration: ${SLIDE_TIME}ms
+  //       `
+  //     );
+  //   });
+  // };
 
   // RETURN FUNCTIONS
   return {
@@ -72,45 +73,68 @@ const modalCarouselUI = (function () {
     },
     closeModalCarousel: (e) => {
       // console.log(e.target);
-      const exitBtn = e.target.parentElement;
       DOM.modalsContainer.classList.add('hidden');
-      DOM.modalSlides;
-      // const modalIndex = exitBtn.id.split('-').pop();
-      // console.log(modalIndex);
-      // modals[modalIndex].classList.add('hidden');
+      DOM.body.classList.remove('modal-visible');
     },
     changeSlide: (forward) => {
       console.log('CHANGE_SLIDE_FUNCTION');
+      console.log('activeSlideIndex:', activeSlideIndex);
+      console.log('active:', active);
+      console.log('newActive', newActive);
 
-      if (clickable) {
-        console.log('IF CLICKABLE', clickable);
-        clickable = false;
-        if (forward) {
-          console.log('IF_FORWARD', forward);
-          console.log('active slide index', activeSlideIndex);
+      if (forward) {
+        // point active to next slide
+        activeSlideIndex = (activeSlideIndex + 1) % 7;
+        newActive = DOM.carouselSlides[activeSlideIndex];
 
-          // 
-          // console.log(DOM.carouselSlides);
-          newActive = DOM.carouselSlides[(activeSlideIndex + 1) % 7];
-          console.log('new active', newActive);
-          active.classList.add('slideOutLeft');
-          newActive.classList.remove('hidden');
-          newActive.classList.add('slideInRight', 'active');
-        } else {
-        }
-      }
-    },
-    activeSlideTransitionEnd: (e) => {
-      console.log('ACTIVE_SLIDE_TRANSITION_END_FUNCTION');
-      console.log('e.target', e.target);
-      console.log('active', active);
-      console.log(e.target === active);
-      if (e.target === active && !clickable) {
-        clickable = true;
-        active.className = '.carousel-slide';
+        console.log('activeSlideIndex:', activeSlideIndex);
+        console.log('active:', active);
+        console.log('newActive', newActive);
+
+        // change active slide;
         active.classList.add('hidden');
+        newActive.classList.remove('hidden');
+        active = newActive;
+      } else {
+        // point active to previous slide
+        activeSlideIndex = (activeSlideIndex - 1 + 7) % 7;
+        newActive = DOM.carouselSlides[activeSlideIndex];
+
+        // change active slide
+        active.classList.add('hidden');
+        newActive.classList.remove('hidden');
+        active = newActive;
       }
+
+      // if (clickable) {
+      //   console.log('IF CLICKABLE', clickable);
+      //   clickable = false;
+      //   if (forward) {
+      //     console.log('IF_FORWARD', forward);
+      //     console.log('active slide index', activeSlideIndex);
+
+      //     //
+      //     // console.log(DOM.carouselSlides);
+      //     newActive = DOM.carouselSlides[(activeSlideIndex + 1) % 7];
+      //     console.log('new active', newActive);
+      //     active.classList.add('slideOutLeft');
+      //     newActive.classList.remove('hidden');
+      //     newActive.classList.add('slideInRight', 'active');
+      //   } else {
+      //   }
+      // }
     },
+    // activeSlideTransitionEnd: (e) => {
+    //   console.log('ACTIVE_SLIDE_TRANSITION_END_FUNCTION');
+    //   console.log('e.target', e.target);
+    //   console.log('active', active);
+    //   console.log(e.target === active);
+    //   if (e.target === active && !clickable) {
+    //     clickable = true;
+    //     active.className = '.carousel-slide';
+    //     active.classList.add('hidden');
+    //   }
+    // },
   };
 })();
 

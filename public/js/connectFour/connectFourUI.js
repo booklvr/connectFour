@@ -383,7 +383,7 @@ const connectFourUI = (function () {
   };
 
   const getFullscreenElement = (el) => {
-    console.log('GET FULL SCREEN ELEMENT FUNCTION');
+    // console.log('GET FULL SCREEN ELEMENT FUNCTION');
     return (
       document.fullscreenElement ||
       document.webkitFullscreenElement ||
@@ -462,9 +462,9 @@ const connectFourUI = (function () {
       DOM.statusSpan.classList.remove('red');
     },
     undoLastMove: () => {
-      console.log('UNDO LAST MOVE FUNCTION');
+      // console.log('UNDO LAST MOVE FUNCTION');
       const lastCell = lastMoveList.pop();
-      console.log(lastCell);
+      // console.log(lastCell);
       yellowIsNext = !yellowIsNext;
       lastCell.classList.remove('red');
       lastCell.classList.remove('yellow');
