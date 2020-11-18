@@ -16,6 +16,9 @@ var controller = (function (UI) {
       carouselSlides: document.querySelectorAll(DOMStrings.carouselSlides),
       carouselArrowLeft: document.querySelector(DOMStrings.carouselArrowLeft),
       carouselArrowRight: document.querySelector(DOMStrings.carouselArrowRight),
+      carouselIndexBtns: [
+        ...document.querySelectorAll(DOMStrings.carouselIndexBtns),
+      ],
     };
 
     // EVENT LISTENERS
@@ -25,7 +28,18 @@ var controller = (function (UI) {
     }
 
     DOM.carouselSlides.forEach((slide) => {
-      slide.addEventListener('transitionend', UI.activeSlideTransitionEnd);
+      console.log('adding transition end functionality');
+      slide.addEventListener('transitionend ', UI.activeSlideTransitionEnd);
+    });
+
+    DOM.carouselSlides.forEach((slide) => {
+      slide.ontransitionend = (e) => {
+        UI.activeSlideTransitionEnd(e);
+      };
+    });
+
+    DOM.carouselIndexBtns.forEach((indexBtn) => {
+      indexBtn.addEventListener('click', UI.handleIndexBtnClick);
     });
 
     DOM.carouselArrowLeft.addEventListener('click', () => {

@@ -60,18 +60,41 @@
     }
 
     .carousel-slide {
+      background-color: pink;
       position: absolute;
       width: 100%;
-      z-index: 500;
+      overflow: hidden;
+      // z-index: 500;
       height: 100%;
+
       @include centered;
-      transition: transform 1000ms ease;
-      animation-duration: 1000ms;
+      // transition: transform 1000ms ease;
+      transition-property: transform;
+      transition-duration: 1s;
+      transition-delay: 0;
+      // animation-duration: 1000ms;
+
+      .carousel-slide__image {
+        height: 50%;
+      }
+      .carousel-slide__text {
+        margin-top: 2rem;
+        width: 75%;
+        height: 25%;
+        background-color: blue;
+        @include centered;
+        text-align: center;
+        font-size: 3vw;
+      }
     }
 
-    .active {
-      z-index: 1000;
+    .slide-out-left {
+      transform: translateX(-100%);
     }
+
+    // .active {
+    //   z-index: 1000;
+    // }
   }
 
   .modal--footer-container {
@@ -93,38 +116,46 @@
 }
 
 // animations
-.slideInLeft {
-  animation-name: animateInLeft;
-  z-index: 1000;
-}
+// .slideInLeft {
+//   animation-name: animateInLeft;
+//   // z-index: 1000;
+// }
 
-.slideInRight {
-  animation-name: animateInRight;
-  z-index: 1000;
-}
+// @keyframes animateInLeft {
+//   0% {
+//     transform: translateX(-100%);
+//   }
+//   100% {
+//     transform: translateX(0%);
+//   }
+// }
 
-.slideOutLeft {
-  transform: translateX(-100%);
-}
+// .slideInRight {
+//   animation-name: animateInRight;
+// z-index: 1000;
+// }
 
-.slideOutRight {
-  transform: translateX(100%);
-}
+// .slideOutLeft {
+//   // transform: translateX(-100%);
+//   animation-name: slide-out-left;
+//   animation-duration: 1s;
+// }
 
-@keyframes animateInLeft {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(0%);
-  }
-}
+// @keyframes slide-out-left {
+//   100% {
+//     display: none;
+//   }
+// }
 
-@keyframes animateInRight {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(0%);
-  }
-}
+// .slideOutRight {
+//   transform: translateX(100%);
+// }
+
+// @keyframes animateInRight {
+//   0% {
+//     transform: translateX(100%);
+//   }
+//   100% {
+//     transform: translateX(0%);
+//   }
+// }
