@@ -110,6 +110,7 @@ const modalCarouselUI = (function () {
           activeSlideIndex = (activeSlideIndex - 1 + 7) % 7;
           newActive = DOM.carouselSlides[activeSlideIndex];
           active.classList.add('slide-out-right');
+          newActive.classList.add('newActive');
         }
       }
 
