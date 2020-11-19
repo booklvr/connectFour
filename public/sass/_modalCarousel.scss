@@ -64,7 +64,7 @@
       position: absolute;
       width: 100%;
       overflow: hidden;
-      // z-index: 500;
+      z-index: 500;
       height: 100%;
 
       @include centered;
@@ -88,12 +88,47 @@
       }
     }
 
+    .active {
+      z-index: 1000;
+    }
+    .newActive {
+      z-index: 999;
+    }
+
     .slide-out-left {
       transform: translateX(-100%);
     }
 
-    // .active {
-    //   z-index: 1000;
+    .slide-out-right {
+      transform: translateX(100%);
+    }
+
+    // .slide-in-right {
+    //   animation-name: animateInRight;
+    //   z-index: 1001;
+    // }
+
+    // .slide-in-left {
+    //   animation-name: animateInLeft;
+    //   z-index: 1001;
+    // }
+
+    // @keyframes animateInRight {
+    //   0% {
+    //     transform: translateX(100%);
+    //   }
+    //   100% {
+    //     transform: translateX(0%);
+    //   }
+    // }
+
+    // @keyframes animateInLeft {
+    //   0% {
+    //     transform: translateX(-100%);
+    //   }
+    //   100% {
+    //     transform: translateX(0%);
+    //   }
     // }
   }
 

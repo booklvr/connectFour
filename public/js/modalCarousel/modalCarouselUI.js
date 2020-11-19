@@ -77,7 +77,7 @@ const modalCarouselUI = (function () {
 
       // reveal targeted image
       active = DOM.carouselSlides[activeSlideIndex];
-      active.classList.remove('hidden');
+      active.classList.add('active');
     },
     closeModalCarousel: (e) => {
       // console.log(e.target);
@@ -86,9 +86,6 @@ const modalCarouselUI = (function () {
     },
     changeSlide: (forward) => {
       console.log('CHANGE_SLIDE_FUNCTION');
-      console.log('activeSlideIndex:', activeSlideIndex);
-      console.log('active:', active);
-      console.log('newActive', newActive);
 
       if (forward) {
         if (clickable) {
@@ -98,29 +95,22 @@ const modalCarouselUI = (function () {
           activeSlideIndex = (activeSlideIndex + 1) % 7;
           newActive = DOM.carouselSlides[activeSlideIndex];
 
-          console.log('activeSlideIndex:', activeSlideIndex);
-          console.log('active:', active);
-          console.log('newActive', newActive);
-
-          // change active slide;
-
           //animate active slide
           active.classList.add('slide-out-left');
+          newActive.classList.add('newActive');
+          // newActive.classList.add('slide-in-right', 'active');
           // active.classList.add('hidden');
 
           //change newActive
-          newActive.classList.remove('hidden');
-          active = newActive;
+          // newActive.classList.remove('hidden');
         }
       } else {
-        // point active to previous slide
-        activeSlideIndex = (activeSlideIndex - 1 + 7) % 7;
-        newActive = DOM.carouselSlides[activeSlideIndex];
-
-        // change active slide
-        active.classList.add('hidden');
-        newActive.classList.remove('hidden');
-        active = newActive;
+        if (clickable) {
+          clickable = false;
+          activeSlideIndex = (activeSlideIndex - 1 + 7) % 7;
+          newActive = DOM.carouselSlides[activeSlideIndex];
+          active.classList.add('slide-out-right');
+        }
       }
 
       // if (clickable) {
@@ -148,15 +138,16 @@ const modalCarouselUI = (function () {
     },
     activeSlideTransitionEnd: (e) => {
       console.log('ACTIVE_SLIDE_TRANSITION_END_FUNCTION');
-      console.log('e.target', e.target);
-      console.log('active', active);
-      console.log(e.target === active);
-      // active.classList.toggle('hidden');
-      newActive.classList.toggle('hidden');
+
       if (e.target === active && !clickable) {
+        newActive.classList.remove('newActive');
+        console.log('yup they equaled each other :)');
         clickable = true;
-        active.className = '.carousel-slide';
-        active.classList.add('hidden');
+        active.className = 'carousel-slide';
+        console.log('active', active);
+        console.log('newActive', newActive);
+        active = newActive;
+        active.classList.add('active');
       }
     },
   };
