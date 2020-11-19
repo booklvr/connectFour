@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.10.4",
+    "@splidejs/splide": "^2.4.14",
     "axios": "^0.19.2",
     "classlist-polyfill": "^1.2.0",
     "cloudinary": "^1.23.0",

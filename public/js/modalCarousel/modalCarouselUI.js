@@ -3,6 +3,21 @@
 import axios from 'axios';
 import slugify from 'slugify';
 import { showAlert } from '../alert';
+import Splide from '@splidejs/splide';
+
+new Splide('.splide', {
+  height: '100vh'; 
+  type: 'loop',
+  padding: {
+    right: '5rem',
+    left: '5rem',
+  },
+}).mount();
+
+// var elms = document.getElementsByClassName('splide');
+// for (var i = 0, len = elms.length; i < len; i++) {
+//   new Splide(elms[i]).mount();
+// }
 
 const modalCarouselUI = (function () {
   const DOMStrings = {
@@ -76,81 +91,81 @@ const modalCarouselUI = (function () {
       DOM.modalsContainer.classList.remove('hidden');
 
       // reveal targeted image
-      active = DOM.carouselSlides[activeSlideIndex];
-      active.classList.add('active');
+      // active = DOM.carouselSlides[activeSlideIndex];
+      // active.classList.add('active');
     },
     closeModalCarousel: (e) => {
       // console.log(e.target);
       DOM.modalsContainer.classList.add('hidden');
       DOM.body.classList.remove('modal-visible');
     },
-    changeSlide: (forward) => {
-      console.log('CHANGE_SLIDE_FUNCTION');
+    // changeSlide: (forward) => {
+    //   console.log('CHANGE_SLIDE_FUNCTION');
 
-      if (forward) {
-        if (clickable) {
-          // make button unclickable
-          clickable = false;
-          // point active to next slide
-          activeSlideIndex = (activeSlideIndex + 1) % 7;
-          newActive = DOM.carouselSlides[activeSlideIndex];
+    //   if (forward) {
+    //     if (clickable) {
+    //       // make button unclickable
+    //       clickable = false;
+    //       // point active to next slide
+    //       activeSlideIndex = (activeSlideIndex + 1) % 7;
+    //       newActive = DOM.carouselSlides[activeSlideIndex];
 
-          //animate active slide
-          active.classList.add('slide-out-left');
-          newActive.classList.add('newActive');
-          // newActive.classList.add('slide-in-right', 'active');
-          // active.classList.add('hidden');
+    //       //animate active slide
+    //       active.classList.add('slide-out-left');
+    //       newActive.classList.add('newActive');
+    //       // newActive.classList.add('slide-in-right', 'active');
+    //       // active.classList.add('hidden');
 
-          //change newActive
-          // newActive.classList.remove('hidden');
-        }
-      } else {
-        if (clickable) {
-          clickable = false;
-          activeSlideIndex = (activeSlideIndex - 1 + 7) % 7;
-          newActive = DOM.carouselSlides[activeSlideIndex];
-          active.classList.add('slide-out-right');
-          newActive.classList.add('newActive');
-        }
-      }
+    //       //change newActive
+    //       // newActive.classList.remove('hidden');
+    //     }
+    //   } else {
+    //     if (clickable) {
+    //       clickable = false;
+    //       activeSlideIndex = (activeSlideIndex - 1 + 7) % 7;
+    //       newActive = DOM.carouselSlides[activeSlideIndex];
+    //       active.classList.add('slide-out-right');
+    //       newActive.classList.add('newActive');
+    //     }
+    //   }
 
-      // if (clickable) {
-      //   console.log('IF CLICKABLE', clickable);
-      //   clickable = false;
-      //   if (forward) {
-      //     console.log('IF_FORWARD', forward);
-      //     console.log('active slide index', activeSlideIndex);
+    // if (clickable) {
+    //   console.log('IF CLICKABLE', clickable);
+    //   clickable = false;
+    //   if (forward) {
+    //     console.log('IF_FORWARD', forward);
+    //     console.log('active slide index', activeSlideIndex);
 
-      //     //
-      //     // console.log(DOM.carouselSlides);
-      //     newActive = DOM.carouselSlides[(activeSlideIndex + 1) % 7];
-      //     console.log('new active', newActive);
-      //     active.classList.add('slideOutLeft');
-      //     newActive.classList.remove('hidden');
-      //     newActive.classList.add('slideInRight', 'active');
-      //   } else {
-      //   }
-      // }
-    },
-    handleIndexBtnClick: (e) => {
-      console.log('indexBtn:', e.target);
-      const btnIndex = e.target.parentElement.id.split('-').pop();
-      console.log('btnIndex:', btnIndex);
-    },
-    activeSlideTransitionEnd: (e) => {
-      console.log('ACTIVE_SLIDE_TRANSITION_END_FUNCTION');
+    //     //
+    //     // console.log(DOM.carouselSlides);
+    //     newActive = DOM.carouselSlides[(activeSlideIndex + 1) % 7];
+    //     console.log('new active', newActive);
+    //     active.classList.add('slideOutLeft');
+    //     newActive.classList.remove('hidden');
+    //     newActive.classList.add('slideInRight', 'active');
+    //   } else {
+    //   }
+    // }
+    // // },
+    // handleIndexBtnClick: (e) => {
+    //   console.log('indexBtn:', e.target);
+    //   const btnIndex = e.target.parentElement.id.split('-').pop();
+    //   console.log('btnIndex:', btnIndex);
+    // },
+    // activeSlideTransitionEnd: (e) => {
+    //   console.log('ACTIVE_SLIDE_TRANSITION_END_FUNCTION');
 
-      if (e.target === active && !clickable) {
-        newActive.classList.remove('newActive');
-        console.log('yup they equaled each other :)');
-        clickable = true;
-        active.className = 'carousel-slide';
-        console.log('active', active);
-        console.log('newActive', newActive);
-        active = newActive;
-        active.classList.add('active');
-      }
-    },
+    //   if (e.target === active && !clickable) {
+    //     newActive.classList.remove('newActive');
+    //     console.log('yup they equaled each other :)');
+    //     clickable = true;
+    //     active.className = 'carousel-slide';
+    //     console.log('active', active);
+    //     console.log('newActive', newActive);
+    //     active = newActive;
+    //     active.classList.add('active');
+    //   }
+    // },
   };
 })();
 

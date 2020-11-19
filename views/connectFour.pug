@@ -6,15 +6,15 @@ block content
     +title-1('Connect Four')
 
     .container.container--game
-      
+
       .game-board
         .end-game-container.status.hidden
-          
+
         .game-buttons
           button.full-screen-btn Full Screen
           button.undo-btn Undo
           button.reset-btn Reset
-          
+
 
 
         .cell.row-top.col-0
@@ -74,7 +74,7 @@ block content
             button.question-modal-btn
               img(src=question.imageSrc alt="")
 
-      
+
         //- .container--images 
         //-   each question, index in lesson.questions 
         //-     .container--image(id=`img-${index}`)
@@ -88,24 +88,40 @@ block content
               i.fa.fa-times
 
           .modal--carousel-container
-            button.carousel-arrow.carousel-arrow-left
-              i.fa.fa-arrow-left
-            button.carousel-arrow.carousel-arrow-right
-              i.fa.fa-arrow-right
+            .splide#image-slider
+              .splide__track
+                ul.splide__list
 
-            each question, index in lesson.questions
-              
-              .carousel-slide(id=`slide-${index}`)
-                img.carousel-slide__image(src=question.imageSrc alt='question.question')
-                .carousel-slide__text
-                  h3= question.question
-          
-          .modal--footer-container
-            each question, index in lesson.questions
-              button.carousel-index-btn(id=`index-btn-${index}`)
-                i.fa.fa-circle
+                  each question, index in lesson.questions
+                    li.splide__slide
+
+                      img.carousel-slide__image(src=question.imageSrc alt='question.question')
+                      .carousel-slide__text
+                        h3= question.question
 
 
-      
+
+
+
+          //- .modal--carousel-container
+          //-   button.carousel-arrow.carousel-arrow-left
+          //-     i.fa.fa-arrow-left
+          //-   button.carousel-arrow.carousel-arrow-right
+          //-     i.fa.fa-arrow-right
+
+          //-   each question, index in lesson.questions
+
+          //-     .carousel-slide(id=`slide-${index}`)
+          //-       img.carousel-slide__image(src=question.imageSrc alt='question.question')
+          //-       .carousel-slide__text
+          //-         h3= question.question
+
+          //- .modal--footer-container
+          //-   each question, index in lesson.questions
+          //-     button.carousel-index-btn(id=`index-btn-${index}`)
+          //-       i.fa.fa-circle
+
+
+
 
     //- <script src="app.js"></script>

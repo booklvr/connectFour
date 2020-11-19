@@ -13,12 +13,12 @@ var controller = (function (UI) {
     // SETUP DOM
     var DOM = {
       exitModalBtn: document.querySelector(DOMStrings.exitModalBtn),
-      carouselSlides: document.querySelectorAll(DOMStrings.carouselSlides),
-      carouselArrowLeft: document.querySelector(DOMStrings.carouselArrowLeft),
-      carouselArrowRight: document.querySelector(DOMStrings.carouselArrowRight),
-      carouselIndexBtns: [
-        ...document.querySelectorAll(DOMStrings.carouselIndexBtns),
-      ],
+      // carouselSlides: document.querySelectorAll(DOMStrings.carouselSlides),
+      // carouselArrowLeft: document.querySelector(DOMStrings.carouselArrowLeft),
+      // carouselArrowRight: document.querySelector(DOMStrings.carouselArrowRight),
+      // carouselIndexBtns: [
+      //   ...document.querySelectorAll(DOMStrings.carouselIndexBtns),
+      // ],
     };
 
     // EVENT LISTENERS
@@ -27,27 +27,27 @@ var controller = (function (UI) {
       img.addEventListener('click', UI.openModalCarousel);
     }
 
-    DOM.carouselSlides.forEach((slide) => {
-      console.log('adding transition end functionality');
-      slide.addEventListener('transitionend ', UI.activeSlideTransitionEnd);
-    });
+    // DOM.carouselSlides.forEach((slide) => {
+    //   console.log('adding transition end functionality');
+    //   slide.addEventListener('transitionend ', UI.activeSlideTransitionEnd);
+    // });
 
-    DOM.carouselSlides.forEach((slide) => {
-      slide.ontransitionend = (e) => {
-        UI.activeSlideTransitionEnd(e);
-      };
-    });
+    // DOM.carouselSlides.forEach((slide) => {
+    //   slide.ontransitionend = (e) => {
+    //     UI.activeSlideTransitionEnd(e);
+    //   };
+    // });
 
-    DOM.carouselIndexBtns.forEach((indexBtn) => {
-      indexBtn.addEventListener('click', UI.handleIndexBtnClick);
-    });
+    // DOM.carouselIndexBtns.forEach((indexBtn) => {
+    //   indexBtn.addEventListener('click', UI.handleIndexBtnClick);
+    // });
 
-    DOM.carouselArrowLeft.addEventListener('click', () => {
-      UI.changeSlide(false);
-    });
-    DOM.carouselArrowRight.addEventListener('click', () => {
-      UI.changeSlide(true);
-    });
+    // DOM.carouselArrowLeft.addEventListener('click', () => {
+    //   UI.changeSlide(false);
+    // });
+    // DOM.carouselArrowRight.addEventListener('click', () => {
+    //   UI.changeSlide(true);
+    // });
 
     DOM.exitModalBtn.addEventListener('click', UI.closeModalCarousel);
   };
