@@ -94,15 +94,16 @@ block content
               i.fa.fa-arrow-right
 
             each question, index in lesson.questions
-              .carousel-slide.hidden
+              
+              .carousel-slide(id=`slide-${index}`)
                 img.carousel-slide__image(src=question.imageSrc alt='question.question')
-                
-                h3.carousel-slide__text= question.question
+                .carousel-slide__text
+                  h3= question.question
           
           .modal--footer-container
-            //- each question, index in lesson.questions
-            //-   button.carousel-index-btn
-            //-     i.fa.fa-circle
+            each question, index in lesson.questions
+              button.carousel-index-btn(id=`index-btn-${index}`)
+                i.fa.fa-circle
 
 
       
