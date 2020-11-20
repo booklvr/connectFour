@@ -16,6 +16,8 @@ var controller = (function (UI) {
       statusSpan: document.querySelector(DOMStrings.statusSpan),
       undoButton: document.querySelector(DOMStrings.undoButton),
       fullScreenButton: document.querySelector(DOMStrings.fullScreenButton),
+
+      newGameButton: document.querySelector(DOMStrings.newGameButton),
     };
 
     // EVENT LISTENERS
@@ -26,10 +28,11 @@ var controller = (function (UI) {
         cell.addEventListener('click', UI.handleCellClick);
       }
     }
-
+    DOM.newGameButton.addEventListener('click', UI.newGame);
     DOM.resetButton.addEventListener('click', UI.resetGame);
     DOM.undoButton.addEventListener('click', UI.undoLastMove);
     DOM.fullScreenButton.addEventListener('click', UI.toggleFullScreen);
+
     if (document.addEventListener) {
       document.addEventListener(
         'fullscreenchange',

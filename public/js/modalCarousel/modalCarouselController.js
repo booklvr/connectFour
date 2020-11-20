@@ -12,6 +12,7 @@ var controller = (function (UI) {
 
     // SETUP DOM
     var DOM = {
+      reviewButton: document.querySelector(DOMStrings.reviewButton),
       exitModalBtn: document.querySelector(DOMStrings.exitModalBtn),
       carouselSlides: document.querySelectorAll(DOMStrings.carouselSlides),
       carouselArrowLeft: document.querySelector(DOMStrings.carouselArrowLeft),
@@ -23,8 +24,17 @@ var controller = (function (UI) {
 
     // EVENT LISTENERS
 
+    DOM.reviewButton.addEventListener('click', () => {
+      UI.openModalCarousel();
+    });
+
     for (const img of imgRow) {
-      img.addEventListener('click', UI.openModalCarousel);
+      img.addEventListener('click', (e) => {
+        const activeSlideIndex = e.target.parentElement.parentElement.id
+          .split('-')
+          .pop();
+        UI.openModalCarousel(activeSlideIndex);
+      });
     }
 
     DOM.carouselSlides.forEach((slide) => {

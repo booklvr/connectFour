@@ -11,6 +11,8 @@ const connectFourUI = (function () {
     resetButton: '.reset-btn',
     undoButton: '.undo-btn',
     fullScreenButton: '.full-screen-btn',
+
+    newGameButton: '.new-game-btn',
     statusSpan: '.status',
     containerImage: '.container--image',
 
@@ -508,6 +510,9 @@ const connectFourUI = (function () {
         DOM.gameContainer.requestFullscreen().catch(console.log);
         // DOM.gameBoard.classList.add('full-screen-game-board');
       }
+    },
+    newGame: () => {
+      window.location.reload();
     },
     onFullScreenChange: (e) => {
       console.log('EXIT HANDLER FUNCTION');

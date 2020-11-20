@@ -8,8 +8,10 @@ const modalCarouselUI = (function () {
   const DOMStrings = {
     // BY CLASS
     containerImage: '.container--image',
+    reviewButton: '.review-btn',
     modalsContainer: '.container--modals',
     modalCarouselContainer: '.modal--carousel-container',
+
     carouselSlides: '.carousel-slide',
     carouselArrowLeft: '.carousel-arrow-left',
     carouselArrowRight: '.carousel-arrow-right',
@@ -64,11 +66,12 @@ const modalCarouselUI = (function () {
   return {
     getDOMStrings: () => DOMStrings,
 
-    openModalCarousel: (e) => {
+    openModalCarousel: (index = 0) => {
+      console.log(index);
       // get index id off image container
-      activeSlideIndex = e.target.parentElement.parentElement.id
-        .split('-')
-        .pop();
+      activeSlideIndex = parseInt(index);
+      //   .split('-')
+      //   .pop();
       // console.log('activeSlideIndex:', activeSlideIndex);
 
       // disable scroll on body
@@ -87,6 +90,12 @@ const modalCarouselUI = (function () {
       // console.log(e.target);
       DOM.modalsContainer.classList.add('hidden');
       DOM.body.classList.remove('modal-visible');
+      active = null;
+      activeSlideIndex = null;
+      newActive = null;
+      DOM.carouselSlides.forEach((slide) => {
+        slide.className = 'carousel-slide';
+      });
     },
     changeSlide: (forward) => {
       console.log('CHANGE_SLIDE_FUNCTION');
