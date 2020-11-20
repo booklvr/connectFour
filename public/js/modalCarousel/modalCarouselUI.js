@@ -126,29 +126,17 @@ const modalCarouselUI = (function () {
           newActive.classList.add('slide-in-left', 'active');
         }
       }
-
-      // if (clickable) {
-      //   console.log('IF CLICKABLE', clickable);
-      //   clickable = false;
-      //   if (forward) {
-      //     console.log('IF_FORWARD', forward);
-      //     console.log('active slide index', activeSlideIndex);
-
-      //     //
-      //     // console.log(DOM.carouselSlides);
-      //     newActive = DOM.carouselSlides[(activeSlideIndex + 1) % 7];
-      //     console.log('new active', newActive);
-      //     active.classList.add('slideOutLeft');
-      //     newActive.classList.remove('hidden');
-      //     newActive.classList.add('slideInRight', 'active');
-      //   } else {
-      //   }
-      // }
     },
     handleIndexBtnClick: (e) => {
-      console.log('indexBtn:', e.target);
-      const btnIndex = e.target.parentElement.id.split('-').pop();
-      console.log('btnIndex:', btnIndex);
+      activeSlideIndex = e.target.parentElement.id.split('-').pop();
+      DOM.carouselIndexBtns.forEach((btn) =>
+        btn.classList.remove('active-index')
+      );
+      DOM.carouselIndexBtns[activeSlideIndex].classList.add('active-index');
+
+      active.className = 'carousel-slide';
+      active = DOM.carouselSlides[activeSlideIndex];
+      active.classList.add('active');
     },
     activeSlideTransitionEnd: (e) => {
       console.log('ACTIVE_SLIDE_TRANSITION_END_FUNCTION');
