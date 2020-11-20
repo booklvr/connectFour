@@ -78,6 +78,10 @@ const modalCarouselUI = (function () {
       // reveal targeted image
       active = DOM.carouselSlides[activeSlideIndex];
       active.classList.add('active');
+      DOM.carouselIndexBtns.forEach((btn) =>
+        btn.classList.remove('active-index')
+      );
+      DOM.carouselIndexBtns[activeSlideIndex].classList.add('active-index');
     },
     closeModalCarousel: (e) => {
       // console.log(e.target);
@@ -98,7 +102,11 @@ const modalCarouselUI = (function () {
           //animate active slide
           active.classList.add('slide-out-left');
           newActive.classList.add('newActive');
-          // newActive.classList.add('slide-in-right', 'active');
+          DOM.carouselIndexBtns.forEach((btn) =>
+            btn.classList.remove('active-index')
+          );
+          DOM.carouselIndexBtns[activeSlideIndex].classList.add('active-index');
+          newActive.classList.add('slide-in-right', 'active');
           // active.classList.add('hidden');
 
           //change newActive
@@ -111,6 +119,11 @@ const modalCarouselUI = (function () {
           newActive = DOM.carouselSlides[activeSlideIndex];
           active.classList.add('slide-out-right');
           newActive.classList.add('newActive');
+          DOM.carouselIndexBtns.forEach((btn) =>
+            btn.classList.remove('active-index')
+          );
+          DOM.carouselIndexBtns[activeSlideIndex].classList.add('active-index');
+          newActive.classList.add('slide-in-left', 'active');
         }
       }
 
