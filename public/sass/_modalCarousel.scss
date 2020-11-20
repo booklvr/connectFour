@@ -8,16 +8,16 @@
   justify-content: space-between;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
   background-color: white;
+  overflow: hidden;
 
   .modal--header-container {
     @include centered;
     position: relative;
     height: calc(100vh / 8);
     width: 100vw;
-    border-bottom: 2px solid black;
     background-color: white;
+    border-bottom: 2px solid black;
 
     h3 {
       font-family: $font-main;
@@ -39,6 +39,7 @@
     flex: 1;
     position: relative;
     width: 100vw;
+    background-color: white;
     overflow: hidden;
 
     .carousel-arrow {
@@ -61,12 +62,12 @@
     }
 
     .carousel-slide {
+      background-color: white;
       position: absolute;
       width: 100%;
       overflow: hidden;
       z-index: 500;
       height: 100%;
-      background-color: white;
 
       @include centered;
       // transition: transform 1000ms ease;
@@ -82,10 +83,10 @@
         margin-top: 2rem;
         width: 75%;
         height: 25%;
+        background-color: white;
         @include centered;
         text-align: center;
         font-size: 3vw;
-        background-color: white;
       }
     }
 
@@ -149,10 +150,11 @@
       background-color: inherit;
       margin: 0 1rem;
       outline: none;
+      cursor: pointer;
     }
     .active-index {
       border-radius: 50%;
-      border: 3px solid $color-blue;
+      border: 2px solid $color-blue;
     }
   }
 }
