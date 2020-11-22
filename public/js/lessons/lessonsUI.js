@@ -107,8 +107,34 @@ const lessonsUI = (function () {
       createDOM();
     },
     goToLesson: (e) => {
-      console.log(e.target.parentElement);
-      location.assign(`lessons/${e.target.parentElement.id}`);
+      if (e.target.parentElement.classList.contains('lesson-link')) {
+        location.assign(`lessons/${e.target.parentElement.id}`);
+      }
+    },
+    deleteLesson: async (e) => {
+      if (e.target.parentElement.classList.contains('delete-lesson-btn')) {
+        const lessonId = e.target.parentElement.id.split('-').pop();
+
+        try {
+          const res = await axios({
+            method: 'DELETE',
+            url: `/api/v1/lessons/${lessonId}`,
+          });
+
+          if (res.data.status === 'success') {
+            showAlert('success', 'saved game deleted successfully.');
+            window.setTimeout(() => {
+              location.reload();
+            }, 1000);
+          } else {
+            console.log('Error Deleting Saved Game.');
+            showAlert('error', 'error deleting the saved game');
+          }
+        } catch (err) {
+          showAlert('error', err);
+          console.log('try catch err', err);
+        }
+      }
     },
   };
 })();

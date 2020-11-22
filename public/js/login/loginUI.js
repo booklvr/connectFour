@@ -25,7 +25,6 @@ const loginUI = (function () {
     },
     login: async function (e) {
       e.preventDefault();
-      console.log('LOGIN FRONTEND()');
 
       try {
         const res = await axios({

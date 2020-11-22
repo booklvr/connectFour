@@ -65,7 +65,7 @@ exports.updateUser = catchAsync(async (req, res, next) => {
 
 exports.getLessons = async (req, res) => {
   let user = await User.findById(req.user._id);
-  console.log('user', user);
+  
 
   user = await user
     .populate({
@@ -73,8 +73,7 @@ exports.getLessons = async (req, res) => {
     })
     .execPopulate();
 
-  console.log(user.lessons);
-  console.log(user);
+  
 
   res.status(200).render('lessons', {
     title: 'Lessons',
@@ -116,7 +115,7 @@ exports.connectFour = catchAsync(async (req, res, next) => {
 exports.getLesson = catchAsync(async (req, res, next) => {
   const lesson = await Lesson.findById(req.params.id);
 
-  console.log(lesson);
+  
 
   res.status(200).render('lesson', {
     lesson: lesson,

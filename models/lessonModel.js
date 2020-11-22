@@ -33,6 +33,9 @@ const LessonSchema = new mongoose.Schema(
         imageSrc: {
           type: String,
         },
+        public_id: {
+          type: String,
+        },
       },
     ],
   },

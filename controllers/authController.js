@@ -24,7 +24,6 @@ exports.isLoggedIn = (req, res, next) => {
 
 
 exports.login = (req, res, next) => {
-  console.log('auth controller => login()');
   res.status(200).json({
     status: 'success',
     data: {

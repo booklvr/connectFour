@@ -385,7 +385,6 @@ const connectFourUI = (function () {
   };
 
   const getFullscreenElement = (el) => {
-    // console.log('GET FULL SCREEN ELEMENT FUNCTION');
     return (
       document.fullscreenElement ||
       document.webkitFullscreenElement ||
@@ -394,14 +393,6 @@ const connectFourUI = (function () {
     );
   };
 
-  // const toggleFullScreen = (el) => {
-  //   if (getFullScreen(el)) {
-  //     el.exitFullScreen();
-  //   } else {
-  //     el.requestFullScreen().catch(console.log);
-  //   }
-  // };
-
   // RETURN FUNCTIONS
   return {
     getDOMStrings: () => DOMStrings,
@@ -409,7 +400,6 @@ const connectFourUI = (function () {
     getColumnsAndRows: () => [columns, rows],
 
     handleCellMouseOver: (e) => {
-      // console.log('handleCellMouseOver()');
       if (!gameIsLive) return;
       const cell = e.target;
       const [rowIndex, colIndex] = getCellLocation(cell);
@@ -419,7 +409,6 @@ const connectFourUI = (function () {
       hoverImage(colIndex);
     },
     handleCellMouseOut: (e) => {
-      // console.log('handlecellMouseOut()');
       const cell = e.target;
       const [rowIndex, colIndex] = getCellLocation(cell);
       clearColorFromTop(colIndex);
@@ -464,9 +453,7 @@ const connectFourUI = (function () {
       DOM.statusSpan.classList.remove('red');
     },
     undoLastMove: () => {
-      // console.log('UNDO LAST MOVE FUNCTION');
       const lastCell = lastMoveList.pop();
-      // console.log(lastCell);
       yellowIsNext = !yellowIsNext;
       lastCell.classList.remove('red');
       lastCell.classList.remove('yellow');
@@ -486,22 +473,7 @@ const connectFourUI = (function () {
         DOM.statusSpan.classList.remove('red');
       }
     },
-    // openQuestionModal: (e) => {
-    //   DOM.body.classList.add('modal-visible');
-    //   DOM.containerModals.classList.remove('hidden');
-    //   const imgCell = e.target.parentElement.parentElement;
-    //   const modalIndex = imgCell.id.split('-').pop();
-    //   console.log(modalIndex);
-    //   console.log(modals[modalIndex]);
-    //   modals[modalIndex].classList.remove('hidden');
-    // },
-    // closeQuestionModal: (e) => {
-    //   console.log(e.target);
-    //   const exitBtn = e.target.parentElement;
-    //   const modalIndex = exitBtn.id.split('-').pop();
-    //   console.log(modalIndex);
-    //   modals[modalIndex].classList.add('hidden');
-    // },
+
     toggleFullScreen: (e) => {
       if (getFullscreenElement(DOM.gameContainer)) {
         document.exitFullscreen().catch(console.log);
@@ -515,25 +487,12 @@ const connectFourUI = (function () {
       window.location.reload();
     },
     onFullScreenChange: (e) => {
-      console.log('EXIT HANDLER FUNCTION');
       if (getFullscreenElement(DOM.gameContainer)) {
         DOM.gameBoard.classList.add('full-screen-game-board');
       } else {
         DOM.gameBoard.classList.remove('full-screen-game-board');
       }
     },
-    //   console.log(e.target);
-    //   if (DOM.gameContainer.requestFullscreen) {
-    //     DOM.gameContainer.requestFullscreen();
-    //   } else if (DOM.gameContainer.webkitRequestFullscreen) {
-    //     /* Safari */
-    //     DOM.gameContainer.webkitRequestFullscreen();
-    //   } else if (DOM.gameContainer.msRequestFullscreen) {
-    //     /* IE11 */
-    //     DOM.gameContainer.msRequestFullscreen();
-    //   }
-    //   DOM.gameBoard.classList.add('full-screen-game-board');
-    // },
   };
 })();
 

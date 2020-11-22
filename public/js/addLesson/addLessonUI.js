@@ -8,7 +8,7 @@ const addLessonUI = (function () {
     // BY ID
     title: '#title',
     class: '#class',
-    languageFocus: '#languageFocus',
+    target: '#target',
     chapter: '#chapter',
     submitAddLessonBtn: '#submit-add-lesson-btn',
   };
@@ -17,10 +17,8 @@ const addLessonUI = (function () {
     title: document.querySelector(DOMStrings.title),
     class: document.querySelector(DOMStrings.class),
     chapter: document.querySelector(DOMStrings.chapter),
-    languageFocus: document.querySelector(DOMStrings.languageFocus),
-    submitAddLessonBtn: document.querySelector(
-      DOMStrings.submitAddLessonBtn
-    ),
+    target: document.querySelector(DOMStrings.target),
+    submitAddLessonBtn: document.querySelector(DOMStrings.submitAddLessonBtn),
   };
 
   // HELPER FUNCTIONS
@@ -45,13 +43,12 @@ const addLessonUI = (function () {
             title: DOM.title.value,
             class: DOM.class.value,
             chapter: DOM.chapter.value,
-            languageFocus: DOM.chapter.focus,
+            target: DOM.target.value,
           },
         });
 
         if (res.data.status === 'success') {
           showAlert('success', 'Lesson Added Successfully');
-          // console.log(res.data.data.data);
           window.setTimeout(() => {
             location.assign(`/lessons/${res.data.data.data._id}`);
           }, 1000);

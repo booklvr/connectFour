@@ -6,7 +6,7 @@
   font-size: 1.8rem;
   font-weight: bold;
   border: none;
-  border-radius: 2.5rem;
+  // border-radius: 2.5rem;
   height: 5rem;
 
   color: $color-white;
@@ -15,6 +15,7 @@
 
 .btn__lg {
   width: 25rem;
+  min-height: 5rem;
 }
 
 .btn__md {
@@ -36,7 +37,7 @@
 .btn__rnd--md {
   height: 3.6rem;
   width: 3.6rem;
-  border-radius: 1.8rem;
+  // border-radius: 1.8rem;
 
   i {
     font-size: 1.75rem;
@@ -54,7 +55,7 @@
 .btn__rnd--sm {
   height: 2.5rem;
   width: 2.5rem;
-  border-radius: 50%;
+  // border-radius: 50%;
 
   i {
     font-size: 1.5rem;
@@ -93,7 +94,7 @@
 }
 
 .btn--google {
-  border-radius: 2.5rem;
+  // border-radius: 2.5rem;
   .container--logo {
     @include centered; // df fxdc jcc aic
     background-color: $color-white;

@@ -1,7 +1,6 @@
 // /* eslint-disable */
 import { lessonsUI as UI } from './lessonsUI';
 
-// console.log(lessons);
 
 var controller = (function (UI) {
   const setupEventListeners = function () {
@@ -29,6 +28,7 @@ var controller = (function (UI) {
     DOM.sortCreatedAt.addEventListener('click', UI.sort);
     DOM.sortUpdatedAt.addEventListener('click', UI.sort);
     DOM.lessonDataContainer.addEventListener('click', UI.goToLesson);
+    DOM.lessonDataContainer.addEventListener('click', UI.deleteLesson);
   };
 
   return {

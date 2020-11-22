@@ -3,13 +3,15 @@ import axios from 'axios';
 import { showAlert } from '../alert';
 
 // get lesson from lesson.pug script
-console.log(lesson);
 
 const lessonUI = (function () {
   const DOMStrings = {
     // BY CLASS
     response: '.response',
     start: '.start',
+    deleteQuestionBtns: '.delete-question-btn',
+    editQuestionBtns: '.edit-question-btn',
+    submitEditQuestionBtns: '.submit-edit-question-btn',
     // BY ID
     // lessonForm: '#lesson-for',
     addQuestionBtn: '#submit-add-question-btn',
@@ -93,23 +95,13 @@ const lessonUI = (function () {
     addQuestion: (e) => {
       e.preventDefault();
 
-      console.log(e.target.elements);
-      // console.log('fuck yeah');
       e.target.submit();
     },
     fileDragHover: (e) => {
       fileDragHover(e);
-      // e.stopPropagation();
-      // e.preventDefault();
-
-      // DOM.fileDrag.className = e.type === 'dragover' ? 'hover' : '';
     },
-    // test: () => {
-    //   console.log('this is a fucking test');
-    // },
     fileSelectHandler: (e) => {
       const files = e.target.files || e.dataTransfer.files;
-      console.log(files);
       if (Array.from(files).length !== 1) {
         console.log('something horrible happened in fileSelectHandler');
         return;
@@ -120,8 +112,70 @@ const lessonUI = (function () {
       parseFile(files[0]);
 
       DOM.fileInput.files = e.target.files || e.dataTransfer.files;
-      console.log(DOM.fileInput.files);
-      // uploadFile(files[0]);
+    },
+    deleteQuestion: async (e) => {
+      const questionId = e.target.parentElement.id.split('-').pop();
+      try {
+        const res = await axios({
+          method: 'DELETE',
+          url: `/api/v1/lessons/${lesson._id}/${questionId}`,
+        });
+
+        if (res.data.status === 'success') {
+          showAlert('success', 'question deleted successfully.');
+          window.setTimeout(() => {
+            location.reload();
+          }, 1000);
+        } else {
+          DOM.student.value = '';
+          console.log('Error Deleting Question.');
+          showAlert('error', 'Error Deleting Question');
+        }
+      } catch (err) {
+        showAlert('error', err);
+        console.log('try catch err', err);
+      }
+    },
+    toggleEditForm: (e) => {
+      const question = e.target.parentElement.parentElement.parentElement;
+      question.parentElement.classList.add('active');
+      const editForm = question.parentElement.querySelector(
+        '.container-edit-question-form'
+      );
+      question.classList.add('hidden');
+      editForm.classList.remove('hidden');
+
+      
+    },
+    editQuestion: async (e) => {
+      e.preventDefault();
+      const questionId = e.target.id.split('-').pop();
+      const form = e.target.parentElement;
+      const question = form.querySelector('.edit-text').value;
+
+      try {
+        const res = await axios({
+          method: 'PATCH',
+          url: `/api/v1/lessons/${lesson._id}/${questionId}`,
+          data: {
+            question,
+          },
+        });
+
+        if (res.data.status === 'success') {
+          showAlert('success', 'question edited successfully.');
+          window.setTimeout(() => {
+            location.reload();
+          }, 1000);
+        } else {
+          DOM.student.value = '';
+          console.log('Error Editing Question.');
+          showAlert('error', 'Error Editing Question');
+        }
+      } catch (err) {
+        showAlert('error', err);
+        console.log('try catch err', err);
+      }
     },
   };
 })();

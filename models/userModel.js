@@ -64,23 +64,5 @@ UserSchema.virtual('lessons', {
 
 
 
-// UserSchema.post('findOneAndDelete', async function (user) {
-//   console.log('user', user);
-
-//   if (user) {
-//     const classrooms = await Classroom.find({ owner: user._id });
-
-//     console.log('classrooms', classrooms);
-
-//     await Promise.all(
-//       classrooms.map(async (classroom) => {
-//         const deletedClassroom = await Classroom.findByIdAndDelete(
-//           classroom._id
-//         );
-//         console.log('deletedClassroom', deletedClassroom);
-//       })
-//     );
-//   }
-// });
 
 module.exports = mongoose.model('User', UserSchema);

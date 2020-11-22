@@ -8,7 +8,6 @@ var controller = (function (UI) {
     var DOMStrings = UI.getDOMStrings();
 
     const imgRow = document.querySelectorAll(DOMStrings.containerImage);
-    // console.log(imgRow);
 
     // SETUP DOM
     var DOM = {
@@ -38,7 +37,6 @@ var controller = (function (UI) {
     }
 
     DOM.carouselSlides.forEach((slide) => {
-      console.log('adding transition end functionality');
       slide.addEventListener('transitionend ', UI.activeSlideTransitionEnd);
     });
 

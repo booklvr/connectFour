@@ -67,12 +67,8 @@ const modalCarouselUI = (function () {
     getDOMStrings: () => DOMStrings,
 
     openModalCarousel: (index = 0) => {
-      console.log(index);
       // get index id off image container
       activeSlideIndex = parseInt(index);
-      //   .split('-')
-      //   .pop();
-      // console.log('activeSlideIndex:', activeSlideIndex);
 
       // disable scroll on body
       DOM.body.classList.add('modal-visible');
@@ -98,8 +94,6 @@ const modalCarouselUI = (function () {
       });
     },
     changeSlide: (forward) => {
-      console.log('CHANGE_SLIDE_FUNCTION');
-
       if (forward) {
         if (clickable) {
           // make button unclickable
@@ -148,15 +142,11 @@ const modalCarouselUI = (function () {
       active.classList.add('active');
     },
     activeSlideTransitionEnd: (e) => {
-      console.log('ACTIVE_SLIDE_TRANSITION_END_FUNCTION');
-
       if (e.target === active && !clickable) {
         newActive.classList.remove('newActive');
-        console.log('yup they equaled each other :)');
         clickable = true;
         active.className = 'carousel-slide';
-        console.log('active', active);
-        console.log('newActive', newActive);
+
         active = newActive;
         active.classList.add('active');
       }

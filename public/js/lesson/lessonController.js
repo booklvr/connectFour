@@ -13,6 +13,13 @@ var controller = (function (UI) {
       fileDrag: document.querySelector(DOMStrings.fileDrag),
       fileInput: document.querySelector(DOMStrings.fileInput),
       playBtn: document.querySelector(DOMStrings.playBtn),
+      deleteQuestionBtns: document.querySelectorAll(
+        DOMStrings.deleteQuestionBtns
+      ),
+      editQuestionBtns: document.querySelectorAll(DOMStrings.editQuestionBtns),
+      submitEditQuestionsBtns: document.querySelectorAll(
+        DOMStrings.submitEditQuestionBtns
+      ),
       // fileSelect: document.querySelector(DOMStrings.fileSelect),
     };
 
@@ -24,7 +31,18 @@ var controller = (function (UI) {
     DOM.fileDrag.addEventListener('drop', UI.fileSelectHandler, false);
     DOM.fileInput.addEventListener('change', UI.fileSelectHandler);
     DOM.playBtn.addEventListener('click', UI.playConnectFour);
-    // DOM.fileSelect.addEventListener('change', fileSelectHandler, false);
+
+    DOM.deleteQuestionBtns.forEach((btn) => {
+      btn.addEventListener('click', UI.deleteQuestion);
+    });
+
+    DOM.editQuestionBtns.forEach((btn) => {
+      btn.addEventListener('click', UI.toggleEditForm);
+    });
+
+    DOM.submitEditQuestionsBtns.forEach((btn) => {
+      btn.addEventListener('click', UI.editQuestion);
+    });
   };
 
   return {

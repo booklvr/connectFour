@@ -10,10 +10,10 @@ block content
 
     .container--instructions 
       p Please add at least seven questions to play the game. 
-      P Please upload pictures only in ajpg, jpeg, or png format.
+      P Please upload pictures only in jpg, jpeg, or png format.
 
 
-    h3 My Questions
+    h3.title--2 My Questions
 
     form.form#lesson-form(action=`/api/v1/lessons/${lesson._id}` autocomplete="off", method='post', enctype="multipart/form-data")
       input(type="hidden" name="lessonId", value=lesson._id)
@@ -40,19 +40,39 @@ block content
           //- label.form__label(for="add-question") Question
           textarea#add-question(name="question" autofocus required placeholder="add the target language here")
 
-      button.btn.btn__rnd.btn__rnd--md.btn--blue#submit-add-question-btn(type="submit" tabindex="0")
-        i.fas.fa-plus
+      button.btn.vertical-button#submit-add-question-btn(type="submit" tabindex="0") s <br>
+        |u
+        |b
+        |m
+        |i
+        |t
+
+    button.btn.btn__lg.btn--blue#play-button Play Connect Four
 
     .container--questions
       each question, index in lesson.questions
         .container--question
           .container--image
           img(src=question.imageSrc, alt="")
+          .container-edit-question-form.hidden
+            form.edit-question-form
+              input.edit-text(type="text" name="question" value=question.question)
+              button.btn.btn__lg.btn--blue.submit-edit-question-btn(id=`update-question-${question._id}` type="submit" tabindex="0") Update Question
+
           .question
-            p.question-number= `Question ${index + 1}`
-            p= question.question
+            p.question-text= question.question
+
+            p.question-number= `${index + 1}`
+            .container__question-btns
+              button.btn.btn__rnd--sm.btn--red.delete-question-btn(id=`delete-question-${question._id}`)
+                i.fas.fa-trash
+              button.btn.btn__rnd--sm.btn--blue.edit-question-btn(id=`edit-question-${question._id}`)
+                i.fas.fa-pencil-alt
+
+
+
 
     //- a.btn.btn__lg.btn--blue#play-button(href=`/connectFour/${lesson._id}`) Play Connect Four
-    button.btn.btn__lg.btn--blue#play-button Play Connect Four
+
   script.
     const lesson=!{JSON.stringify(lesson)};
