@@ -67,6 +67,7 @@ const modalCarouselUI = (function () {
     getDOMStrings: () => DOMStrings,
 
     openModalCarousel: (index = 0) => {
+      alert('open review');
       // get index id off image container
       activeSlideIndex = parseInt(index);
 
