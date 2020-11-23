@@ -4,6 +4,12 @@ const Lesson = require('../models/lessonModel');
 const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 
+exports.getLanding = (req, res) => {
+  res.status(200).render('landing', {
+    title: 'Connect Four',
+  });
+};
+
 exports.getLoginForm = (req, res) => {
   res.status(200).render('login', {
     title: 'Log into your account',
@@ -65,15 +71,12 @@ exports.updateUser = catchAsync(async (req, res, next) => {
 
 exports.getLessons = async (req, res) => {
   let user = await User.findById(req.user._id);
-  
 
   user = await user
     .populate({
       path: 'lessons',
     })
     .execPopulate();
-
-  
 
   res.status(200).render('lessons', {
     title: 'Lessons',
@@ -114,8 +117,6 @@ exports.connectFour = catchAsync(async (req, res, next) => {
 
 exports.getLesson = catchAsync(async (req, res, next) => {
   const lesson = await Lesson.findById(req.params.id);
-
-  
 
   res.status(200).render('lesson', {
     lesson: lesson,
