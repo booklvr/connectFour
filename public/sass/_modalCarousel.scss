@@ -5,20 +5,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+
   width: 100vw;
   height: 100vh;
-  background-color: white;
-  overflow: hidden;
+  background-color: $color-white;
+  z-index: 10000;
 
   .modal--header-container {
     @include centered;
-    position: relative;
-    height: calc(100vh / 8);
+    height: calc(100vh / 16);
     width: 100vw;
-    background-color: white;
-    border-bottom: 2px solid black;
 
+    background-color: $color-very-light-grey;
+
+    position: relative;
+
+    border-bottom: 2px solid black;
     h3 {
       font-family: $font-main;
       font-size: 3rem;
@@ -28,8 +30,8 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      right: 2rem;
-      // background-color: black;
+      right: 1rem;
+      background-color: inherit;
       color: black;
       font-size: 2rem;
     }
@@ -37,10 +39,10 @@
 
   .modal--carousel-container {
     flex: 1;
+    background-color: $color-white;
+
     position: relative;
     width: 100vw;
-    background-color: white;
-    overflow: hidden;
 
     .carousel-arrow {
       position: absolute;
@@ -62,31 +64,79 @@
     }
 
     .carousel-slide {
-      background-color: white;
+      background-color: $color-white;
+
       position: absolute;
       width: 100%;
-      overflow: hidden;
-      z-index: 500;
       height: 100%;
 
-      @include centered;
-      // transition: transform 1000ms ease;
+      z-index: 500;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
       transition-property: transform;
       transition-duration: 1s;
       transition-delay: 0;
-      // animation-duration: 1000ms;
 
-      .carousel-slide__image {
-        height: 50%;
+      .carousel-slide__image-container {
+        background-color: inherit;
+        height: calc(100vh * 11 / 16);
+        width: 100%;
+        padding: calc(100vh / 16);
+
+        .carousel-slide__image {
+          height: 100%;
+          width: 100%;
+          object-fit: contain;
+        }
+      }
+
+      .carousel-cta {
+        background-color: inherit;
+        height: calc(100vh * 11 / 16);
+        width: 100%;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        .carousel-cta-btn {
+          height: 10rem;
+          color: white;
+          margin: 5rem;
+
+          a {
+            @include centered;
+            width: 100%;
+            height: 100%;
+            font-size: 4rem;
+            &:visited,
+            &:active {
+              color: white;
+            }
+          }
+
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
       }
       .carousel-slide__text {
-        margin-top: 2rem;
-        width: 75%;
-        height: 25%;
-        background-color: white;
+        // position: absolute;
+        height: calc(100vh * 3 / 16);
+        justify-self: flex-end;
+
+        width: 100%;
+
+        padding: 0 10rem;
+
         @include centered;
+
+        font-size: 3vh;
         text-align: center;
-        font-size: 3vw;
       }
     }
 
@@ -138,8 +188,8 @@
 
   .modal--footer-container {
     height: calc(100vh / 16);
+    background-color: $color-dark-grey;
     width: 100vw;
-    margin-bottom: 5rem;
 
     display: flex;
     flex-direction: row;
@@ -155,52 +205,7 @@
     }
     .active-index {
       border-radius: 50%;
-      border: 2px solid $color-blue;
+      border: 3px solid $color-white;
     }
   }
 }
-
-// animations
-// .slideInLeft {
-//   animation-name: animateInLeft;
-//   // z-index: 1000;
-// }
-
-// @keyframes animateInLeft {
-//   0% {
-//     transform: translateX(-100%);
-//   }
-//   100% {
-//     transform: translateX(0%);
-//   }
-// }
-
-// .slideInRight {
-//   animation-name: animateInRight;
-// z-index: 1000;
-// }
-
-// .slideOutLeft {
-//   // transform: translateX(-100%);
-//   animation-name: slide-out-left;
-//   animation-duration: 1s;
-// }
-
-// @keyframes slide-out-left {
-//   100% {
-//     display: none;
-//   }
-// }
-
-// .slideOutRight {
-//   transform: translateX(100%);
-// }
-
-// @keyframes animateInRight {
-//   0% {
-//     transform: translateX(100%);
-//   }
-//   100% {
-//     transform: translateX(0%);
-//   }
-// }

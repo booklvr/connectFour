@@ -4,7 +4,7 @@ block content
   main.main#main-landing
     +title-1('Connect Four')
 
-    h2 Add your own photos to the game template to create a fun activity for the classroom.
+    h2.title--2 Classroom Games by Nick de Waal
 
     .container.container--game
       
@@ -71,21 +71,21 @@ block content
         .cell.row-5.col-4.bottom-border
         .cell.row-5.col-5.bottom-border
         .cell.row-5.col-6.bottom-border.right-border
-        .container--image(id=`img-${index}`)
+        .container--image(id='img-0')
             button.question-modal-btn
               img(src="https://res.cloudinary.com/booklvr/image/upload/v1606091956/5fbb0479c43207e1e7781fec/a9ulze8l42cgxhhwgvfp.png" alt="")
-        .container--image(id=`img-${index}`)
-            button.question-modal-btn Add
-        .container--image(id=`img-${index}`)
-            button.question-modal-btn Your 
-        .container--image(id=`img-${index}`)
-            button.question-modal-btn Questions
-        .container--image(id=`img-${index}`)
-            button.question-modal-btn And
-        .container--image(id=`img-${index}`)
-            button.question-modal-btn Pictures
-        .container--image(id=`img-${index}`)
-            button.question-modal-btn
+        .container--image(id='img-1')
+            button.question-modal-btn.send-to-login-btn Register
+        .container--image(id='img-2')
+            button.question-modal-btn.send-to-login-btn Your 
+        .container--image(id='img-3')
+            button.question-modal-btn.send-to-login-btn Account
+        .container--image(id='img-4')
+            button.question-modal-btn.send-to-login-btn To
+        .container--image(id='img-5')
+            button.question-modal-btn.send-to-login-btn Start
+        .container--image(id='img-6')
+            button.question-modal-btn.send-to-login-btn
               img(src="https://res.cloudinary.com/booklvr/image/upload/v1606092017/5fbb0479c43207e1e7781fec/kppcxaqlpsuukczucufp.png" alt="")
 
         .container--modals.hidden
@@ -102,33 +102,40 @@ block content
 
            
               
-            .carousel-slide(id=`slide-1`)
-              img.carousel-slide__image(src="/img/createlesson.png" alt='add questions')
+            .carousel-slide(id='slide-1')
+              .carousel-slide__image-container
+                img.carousel-slide__image(src="/img/createlesson.png" alt='add questions')
+                
               .carousel-slide__text
                 h3 You can search for a created lesson by title, class, chapter, target, date created at, and date updated at.
 
             .carousel-slide(id=`slide-2`)
-              img.carousel-slide__image(src="/img/savedGames.png" alt='add questions')
+              .carousel-slide__image-container
+                img.carousel-slide__image(src="/img/savedGames.png" alt='add questions')
               .carousel-slide__text
                 h3 You can search for a created lesson by title, class, chapter, target, date created at, and date updated at.
 
             .carousel-slide(id=`slide-3`)
-              img.carousel-slide__image(src="/img/addQuestion.png" alt='add questions')
+              .carousel-slide__image-container
+                img.carousel-slide__image(src="/img/addQuestion.png" alt='add questions')
               .carousel-slide__text
                 h3 Add at least 7 questions using the simple drag and drop form.  Once you have created 7 questions you can play.
 
             .carousel-slide(id=`slide-4`)
-              img.carousel-slide__image(src="/img/editPhotos.png" alt='add questions')
+              .carousel-slide__image-container
+                img.carousel-slide__image(src="/img/editPhotos.png" alt='add questions')
               .carousel-slide__text
                 h3 Your completed questions will appear in a list below the form.  You can edit these questions any time by hovering over them
 
             .carousel-slide(id=`slide-5`)
-              img.carousel-slide__image(src="/img/review.png" alt='add questions')
+              .carousel-slide__image-container
+                img.carousel-slide__image(src="/img/review.png" alt='add questions')
               .carousel-slide__text
                 h3 Review your questions at any time by either clicking on one of the photos at the bottom of the game or by clicking the review button.
 
             .carousel-slide(id=`slide-6`)
-              img.carousel-slide__image(src="/img/connectfour.png" alt='add questions')
+              .carousel-slide__image-container
+                img.carousel-slide__image(src="/img/connectfour.png" alt='add questions')
               .carousel-slide__text
                 h3 Use it in your classroom for a quick and fun activity.
             
@@ -142,9 +149,16 @@ block content
                 h3 Register or Login Now to start making your own Connect Four Lessons.
 
           .modal--footer-container
-            each question, index in [1,2,3,4,5,6]
+            each question, index in [1,2,3,4,5,6, 7]
               button.carousel-index-btn(id=`index-btn-${index}`)
                 i.fa.fa-circle
+    
+    
+    
+    .divide.dark
+    
+    h2.title--2.m-l How to Play
+    
 
     .container--card
       img(src="/img/connectfour.png")
@@ -184,3 +198,14 @@ block content
         h2 Review Your Questions
         p Review your questions at any time by either clicking on one of the photos at the bottom of the game or by clicking the review button.  
     
+    .divide
+
+    h2.cta-title Register Now To Start
+
+    .container--cta
+      
+
+      .btn.btn__lg.btn--blue.cta-btn
+        a(href="/login") Login
+      .btn.btn__lg.btn--blue.cta-btn
+        a(href="/register") Register

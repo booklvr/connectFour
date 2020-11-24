@@ -76,7 +76,7 @@ block content
         each question, index in lesson.questions 
           .container--image(id=`img-${index}`)
             button.question-modal-btn
-              img(src=question.imageSrc alt="")
+              img(src=question.imageSrc alt=question.question)
 
       
         //- .container--images 
@@ -100,7 +100,8 @@ block content
             each question, index in lesson.questions
               
               .carousel-slide(id=`slide-${index}`)
-                img.carousel-slide__image(src=question.imageSrc alt='question.question')
+                .carousel-slide__image-container
+                  img.carousel-slide__image(src=question.imageSrc alt='question.question')
                 .carousel-slide__text
                   h3= question.question
           

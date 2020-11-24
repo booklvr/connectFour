@@ -219,10 +219,11 @@ h1 {
     // transition: width 0.2s;
 
     &:hover > button > img {
-      width: 110%;
-      z-index: 1000;
-      overflow: visible;
-      cursor: pointer;
+      // width: 110%;
+      // z-index: 1000;
+      // overflow: visible;
+      // cursor: pointer;
+      transform: scale(1.1);
     }
 
     button {

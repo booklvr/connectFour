@@ -69,18 +69,29 @@ const modalCarouselUI = (function () {
     openModalCarousel: (index = 0) => {
       // get index id off image container
       activeSlideIndex = parseInt(index);
+      console.log('activeSlideIndex', activeSlideIndex);
 
       // disable scroll on body
       DOM.body.classList.add('modal-visible');
       DOM.modalsContainer.classList.remove('hidden');
+      console.log('DOM.modalsContainer', DOM.modalsContainer);
 
       // reveal targeted image
       active = DOM.carouselSlides[activeSlideIndex];
+      console.log(
+        'DOM.carouselSlides[activeSlideIndex]',
+        DOM.carouselSlides[activeSlideIndex]
+      );
       active.classList.add('active');
+      console.log('active', active);
       DOM.carouselIndexBtns.forEach((btn) =>
         btn.classList.remove('active-index')
       );
       DOM.carouselIndexBtns[activeSlideIndex].classList.add('active-index');
+      console.log(
+        'DOM.carouselIndexBtns[activeSlideIndex]',
+        DOM.carouselIndexBtns[activeSlideIndex]
+      );
     },
     closeModalCarousel: (e) => {
       // console.log(e.target);

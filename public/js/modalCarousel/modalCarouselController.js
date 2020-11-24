@@ -29,9 +29,16 @@ var controller = (function (UI) {
 
     for (const img of imgRow) {
       img.addEventListener('click', (e) => {
-        const activeSlideIndex = e.target.parentElement.parentElement.id
-          .split('-')
-          .pop();
+        let btn;
+        if (e.target.tagName === 'IMG') {
+          btn = e.target.parentElement.parentElement;
+        } else {
+          btn = e.target.parentElement;
+        }
+
+        const activeSlideIndex = btn.id.split('-').pop();
+        console.log('FUCK');
+        console.log('activeSlideIndex', activeSlideIndex);
         UI.openModalCarousel(activeSlideIndex);
       });
     }
