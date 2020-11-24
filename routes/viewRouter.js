@@ -48,7 +48,7 @@ router.get(
 
 router.get(
   '/connectFour/:id',
-  authController.isAuthenticated,
+  // authController.isAuthenticated,
   viewsController.connectFour
 );
 
