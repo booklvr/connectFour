@@ -5,9 +5,11 @@ header.header
       a#nav__brand.nav__brand(href="/") Connect 
         span.text-secondary Four
       ul.nav__el
-        if user 
+        if user
           li.nav__el__cta.nav__el__cta--primary
-            a(href="/lessons") Saved games
+            a(href="/addLesson") create game
+          li.nav__el__cta.nav__el__cta--primary
+            a(href="/lessons") saved games
           li.nav__el__cta
             a#logout logout
           li.nav__el__cta
