@@ -191,24 +191,6 @@
   }
 }
 
-footer {
-  align-self: flex-end;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-
-  height: 4rem;
-  width: 100%;
-  border: 1px solid $color-light-grey;
-  font-family: OpenSans;
-  padding: 1rem 0;
-
-  text-transform: uppercase;
-  margin-top: 10rem;
-}
-
 ///
 // ALERT
 ///
