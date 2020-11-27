@@ -122,3 +122,12 @@ exports.getLesson = catchAsync(async (req, res, next) => {
     lesson: lesson,
   });
 });
+
+exports.searchLessons = catchAsync(async (req, res, next) => {
+  const lessons = await Lesson.find();
+
+  res.status(200).render('searchLessons', {
+    lessons,
+    columns: 3,
+  });
+});
