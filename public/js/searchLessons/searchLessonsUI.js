@@ -115,9 +115,7 @@ const searchLessonsUI = (function () {
       colWidth = col.offsetWidth;
       nextCol = col.nextSibling;
       nextColWidth = nextCol.offsetWidth;
-      columnId = col.classList[col.classList.length - 1].split('-').pop();
-
-      /// MAP TO COLUMNS AN APPLY TO EACH >>>> SHOULD BE EASY HAHAHAHAHHA
+      // columnId = col.classList[col.classList.length - 1].split('-').pop();
 
       const row = e.target.parentElement.parentElement;
       const rowWidth = row.offsetWidth;
@@ -129,7 +127,6 @@ const searchLessonsUI = (function () {
       console.log('row', row);
       console.log('rowWidth', rowWidth);
 
-      // console.log('col.parentElement', col.parentElement);
 
       isDrag = true;
       startX = e.pageX;
@@ -154,6 +151,7 @@ const searchLessonsUI = (function () {
       isDrag = false;
       // console.log(e.target);
     },
+
     // loadPage: () => {
     //   createDOM();
     // },
