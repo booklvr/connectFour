@@ -8,7 +8,7 @@ const router = express.Router();
 
 router
   .route('/')
-  .get(authController.isLoggedIn, lessonController.getAllLessons)
+  .get(lessonController.getAllLessons)
   .post(
     authController.isAuthenticated,
     lessonController.setLessonOwnership,

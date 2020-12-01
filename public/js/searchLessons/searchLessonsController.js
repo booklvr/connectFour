@@ -12,7 +12,6 @@ var controller = (function (UI) {
         DOMStrings.lessonDataContainer
       ),
 
-      resizeHandlers: document.querySelectorAll(DOMStrings.resizeHandlers),
       rowHeader: document.querySelector(DOMStrings.rowHeader),
 
       sortPlays: document.querySelector(DOMStrings.sortPlays),
@@ -26,20 +25,12 @@ var controller = (function (UI) {
     };
 
     // EVENT LISTENERS
-    DOM.resizeHandlers.forEach((handler) =>
-      handler.addEventListener('mousedown', UI.mouseDown)
-    );
 
-    document.addEventListener('mouseover', UI.mouseMove);
-
-    document.addEventListener('mouseup', UI.mouseUp);
-
-    // DOM.sortPlays.addEventListener('click', UI.sortPlays);
-    // DOM.sortTitle.addEventListener('click', UI.sort);
-    // DOM.sortQuestions.addEventListener('click', UI.sortQuestions);
-    // DOM.sortTarget.addEventListener('click', UI.sort);
-    // DOM.sortCreatedAt.addEventListener('click', UI.sort);
-    // DOM.lessonDataContainer.addEventListener('click', UI.goToLesson);
+    DOM.sortPlays.addEventListener('click', UI.sort);
+    DOM.sortTitle.addEventListener('click', UI.sort);
+    DOM.sortTarget.addEventListener('click', UI.sort);
+    DOM.sortCreatedAt.addEventListener('click', UI.sort);
+    DOM.lessonDataContainer.addEventListener('click', UI.goToLesson);
     // DOM.lessonDataContainer.addEventListener('click', UI.deleteLesson);
 
     // DOM.sortClass.addEventListener('click', UI.sort);

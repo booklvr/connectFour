@@ -5,6 +5,13 @@ block content
 
     +title-1('Search For a Game')
 
+    .container--search-lessons-form
+      form
+        label(for="search-title") Search Title
+        input#search-title(type="text")
+        label(for="search-target") Search Target
+        input#search-target(type="text")
+
     .container--lessons
       .container--header
         .row.row__header
@@ -18,7 +25,7 @@ block content
             .btn.btn--sort-arrow.hidden
               i.fas.fa-caret-up
             .resize-handler
-          
+
           .column.column__heading.col-2
             .column__heading--text.asc#sort-target Target
             .btn.btn--sort-arrow.hidden
@@ -28,10 +35,10 @@ block content
             .column__heading--text.asc#sort-created-at Created at
             .btn.btn--sort-arrow.hidden
               i.fas.fa-caret-up
-      
+
       .container--lesson-data
-        
-      
+
+
 
 
       //- .row 
@@ -49,13 +56,13 @@ block content
       //-   .column.col-1 two
       //-   .column.col-2 three
       //-   .column.col-3 four
-  
-        
-        
 
 
 
-   
+
+
+
+
 
     //- .container.container__lessons
     //-   .container__lessons--header
@@ -91,5 +98,5 @@ block content
     //-           i.fas.fa-caret-up
     //-         .resize-handler
     //-   .container.container__lessons--data
-  script.
-    const lessons=!{JSON.stringify(lessons)};
+  //- script.
+  //-   const lessons=!{JSON.stringify(lessons)};
