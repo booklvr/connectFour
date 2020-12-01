@@ -69,11 +69,6 @@ const searchLessonsUI = (function () {
   //     addRow(newRow, lesson.target);
   //     addRowDate(newRow, lesson.createdAt);
   //     addRowDate(newRow, lesson.updatedAt);
-  //     const deleteBtn = document.createElement('div');
-  //     deleteBtn.className += 'btn btn--red btn__rnd--sm delete-lesson-btn';
-  //     deleteBtn.setAttribute('id', `delete-lesson-${lesson._id}`);
-  //     deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
-  //     newRow.appendChild(deleteBtn);
   //     DOM.lessonDataContainer.appendChild(newRow);
   //   });
   // };
@@ -127,7 +122,6 @@ const searchLessonsUI = (function () {
       console.log('row', row);
       console.log('rowWidth', rowWidth);
 
-
       isDrag = true;
       startX = e.pageX;
 
@@ -144,8 +138,26 @@ const searchLessonsUI = (function () {
       if (newNextColumnWidth < minWidth) return (newNextColumnWidth = minWidth);
       if (newColumnWidth < minWidth) return (newColumnWidth = minWidth);
 
-      col.style.width = `${newColumnWidth / 10}rem`;
-      nextCol.style.width = `${newNextColumnWidth / 10}rem`;
+      // col.style.width = `${newColumnWidth / 10}rem`;
+
+      const colId = col.classList[col.classList.length - 1].split('-').pop();
+      console.log('colId', colId);
+      const columns = document.querySelectorAll(`.col-${colId}`);
+      columns.forEach((column) => {
+        column.style.width = `${newColumnWidth / 10}rem`;
+      });
+
+      const nextColId = nextCol.classList[nextCol.classList.length - 1]
+        .split('-')
+        .pop();
+      console.log('nextColId', nextColId);
+      const nextColumns = document.querySelectorAll(`.col-${nextColId}`);
+      nextColumns.forEach((nextColumn) => {
+        nextColumn.style.width = `${newNextColumnWidth / 10}rem`;
+      });
+
+      // col.style.width = `${newColumnWidth / 10}rem`;
+      // nextCol.style.width = `${newNextColumnWidth / 10}rem`;
     },
     mouseUp: (e) => {
       isDrag = false;
