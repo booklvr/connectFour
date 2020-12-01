@@ -1,0 +1,95 @@
+extends base
+
+block content
+  main.main#main-searchLessons
+
+    +title-1('Search For a Game')
+
+    .container--lessons
+      .container--header
+        .row.row__header
+          .column.column__heading.column--thin.col-0
+            .column__heading--text.asc#sort-plays Plays
+            .btn.btn--sort-arrow
+              i.fas.fa-caret-up
+            .resize-handler
+          .column.column__heading.col-1
+            .column__heading--text.asc#sort-title Title
+            .btn.btn--sort-arrow.hidden
+              i.fas.fa-caret-up
+            .resize-handler
+          
+          .column.column__heading.col-2
+            .column__heading--text.asc#sort-target Target
+            .btn.btn--sort-arrow.hidden
+              i.fas.fa-caret-up
+            .resize-handler
+          .column.column__heading.col-3
+            .column__heading--text.asc#sort-created-at Created at
+            .btn.btn--sort-arrow.hidden
+              i.fas.fa-caret-up
+      
+      .container--lesson-data
+        
+      
+
+
+      //- .row 
+      //-   .column.column--thin.col-0 one
+      //-   .column.col-1 two
+      //-   .column.col-2 three
+      //-   .column.col-3 four
+      //- .row 
+      //-   .column.column--thin.col-0 one
+      //-   .column.col-1 two
+      //-   .column.col-2 three
+      //-   .column.col-3 four
+      //- .row 
+      //-   .column.column--thin.col-0 one
+      //-   .column.col-1 two
+      //-   .column.col-2 three
+      //-   .column.col-3 four
+  
+        
+        
+
+
+
+   
+
+    //- .container.container__lessons
+    //-   .container__lessons--header
+    //-     .container__row.container__row--heading
+    //-       .column.container__column-heading.col-0
+    //-         .column--heading.asc#sort-title Title
+    //-         .btn.btn--sort-arrow.hidden
+    //-           i.fas.fa-caret-up
+    //-         .resize-handler
+    //-       .column.container__column-heading.col-1
+    //-         .column--heading.asc#sort-class Class
+    //-         .btn.btn--sort-arrow.hidden
+    //-           i.fas.fa-caret-up
+    //-         .resize-handler
+    //-       .column.container__column-heading.col-2
+    //-         .column--heading.asc#sort-chapter Chapter
+    //-         .btn.btn--sort-arrow.hidden
+    //-           i.fas.fa-caret-up
+    //-         .resize-handler
+    //-       .column.container__column-heading.col-4
+    //-         .column--heading.target.asc#sort-target Target
+    //-         .btn.btn--sort-arrow.hidden
+    //-           i.fas.fa-caret-up
+    //-         .resize-handler
+    //-       .column.container__column-heading.col-5
+    //-         .column--heading.asc#sort-createdAt Created At
+    //-         .btn.btn--sort-arrow.hidden
+    //-           i.fas.fa-caret-up
+    //-         .resize-handler
+    //-       .column.container__column-heading.col-6
+    //-         .column--heading.asc#sort-updatedAt Updated At
+    //-         .btn.btn--sort-arrow.hidden
+    //-           i.fas.fa-caret-up
+    //-         .resize-handler
+    //-   .container.container__lessons--data
+  script.
+    const lessons=!{JSON.stringify(lessons)};

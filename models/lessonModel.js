@@ -5,6 +5,10 @@ const mongoose = require('mongoose');
 
 const LessonSchema = new mongoose.Schema(
   {
+    plays: {
+      type: Number,
+      default: 0,
+    },
     title: {
       type: String,
       trim: true,

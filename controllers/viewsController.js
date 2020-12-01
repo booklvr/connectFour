@@ -109,6 +109,9 @@ exports.connectFour = catchAsync(async (req, res, next) => {
   // only send 7 questions to the frontend
   lesson.questions = lesson.questions.slice(0, 7);
 
+  lesson.plays = lesson.plays + 1;
+  await lesson.save();
+
   res.status(200).render('connectFour', {
     title: 'connectFour',
     lesson,
@@ -122,3 +125,23 @@ exports.getLesson = catchAsync(async (req, res, next) => {
     lesson: lesson,
   });
 });
+
+exports.searchLessons = catchAsync(async (req, res, next) => {
+  const lessons = await Lesson.find();
+
+  res.status(200).render('searchLessons', {
+    lessons,
+    columns: 3,
+  });
+});
+
+// exports.addPlays = catchAsync(async (req, res, next) => {
+//   const lessons = await Lesson.find();
+
+//   lessons.forEach((lesson) => {
+//     lesson.plays = 0;
+//     lesson.save();
+//   });
+
+//   res.status(200).send();
+// });

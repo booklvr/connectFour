@@ -52,4 +52,8 @@ router.get(
   viewsController.connectFour
 );
 
+router.get('/searchLessons', viewsController.searchLessons);
+
+// router.get('/addPlays', viewsController.addPlays);
+
 module.exports = router;

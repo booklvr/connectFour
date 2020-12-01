@@ -62,3 +62,8 @@ const lessonsPage = document.getElementById('main-lessons');
 if (lessonsPage) {
   import('./lessons/lessonsController').then();
 }
+
+const searchLessonsPage = document.getElementById('main-searchLessons');
+if (searchLessonsPage) {
+  import('./searchLessons/searchLessonsController').then();
+}
