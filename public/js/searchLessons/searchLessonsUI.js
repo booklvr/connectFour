@@ -10,6 +10,8 @@ const searchLessonsUI = (function () {
     // BY CLASS
     resizeHandlers: '.resize-handler',
     rowHeader: '.row__header',
+    sortArrows: '.btn--sort-arrow',
+    lessonDataContainer: '.container--lesson-data',
 
     // BY ID
     sortPlays: '#sort-plays',
@@ -18,9 +20,8 @@ const searchLessonsUI = (function () {
     sortTarget: '#sort-target',
     sortCreatedAt: '#sort-created-at',
 
-    sortArrows: '.btn--sort-arrow',
-
-    lessonDataContainer: '.container--lesson-data',
+    searchTitleInput: '#search-title',
+    searchTargetInput: '#search-target',
 
     // sortUpdatedAt: '#sort-updatedAt',
     // sortClass: '#sort-class',
@@ -35,6 +36,14 @@ const searchLessonsUI = (function () {
   // CONST VARIABLES
   let lessons = [];
 
+  // query variables
+  let sort = '-plays,title';
+  let fields = 'plays,title,target,createdAt';
+  let page = '1';
+  let limit = '25';
+  let title = '';
+  let target = '';
+
   // HELPER FUNCTIONS
 
   const getData = async () => {
@@ -42,8 +51,16 @@ const searchLessonsUI = (function () {
     try {
       const res = await axios({
         method: 'GET',
-        url: '/api/v1/lessons',
-        // params: {},
+        // url: `/api/v1/lessons?${filter}&${sort}&${fields}&${page}&${limit}`,
+        url: `/api/v1/lessons`,
+        params: {
+          sort,
+          fields,
+          page,
+          limit,
+          title: title ? title : null,
+          target: target ? target : null,
+        },
       });
 
       if (res.data.status === 'success') {
@@ -127,9 +144,9 @@ const searchLessonsUI = (function () {
       sortArrow.firstChild.setAttribute('class', 'fas fa-caret-down');
     }
   };
-  const dynamicSort = (sortOrder, property) => (a, b) =>
-    sortOrder *
-    (a[property] < b[property] ? -1 : a[property] > b[property] ? 1 : 0);
+  // const dynamicSort = (sortOrder, property) => (a, b) =>
+  //   sortOrder *
+  //   (a[property] < b[property] ? -1 : a[property] > b[property] ? 1 : 0);
 
   // RETURN FUNCTIONS
   return {
@@ -141,15 +158,51 @@ const searchLessonsUI = (function () {
       await getData();
       createDOM();
     },
-    sort: (e) => {
+    sort: async (e) => {
       console.log('sort this data');
-      const sortType = e.target.id.split('-').pop();
-      const sortOrder = e.target.classList.contains('asc') ? 1 : -1;
-
-      lessons.sort(dynamicSort(sortOrder, sortType));
-
       addSortClass(e.target);
       addSortArrow(e.target);
+      let sortType = e.target.id.split('-').pop();
+      const sortOrder = e.target.classList.contains('asc') ? 'asc' : 'desc';
+      console.log('sortOrder', sortOrder);
+
+      console.log('sortType', sortType);
+
+      if (sortType === 'at') {
+        sortType = 'createdAt';
+      }
+
+      console.log('sortType', sortType);
+
+      sort = sortType;
+
+      if (sortOrder === 'desc') {
+        sort = '-' + sort;
+      }
+
+      await getData();
+      createDOM();
+
+      // lessons.sort(dynamicSort(sortOrder, sortType));
+
+      // addSortClass(e.target);
+      // addSortArrow(e.target);
+      // createDOM();
+    },
+    search: async (e) => {
+      console.log(e.target);
+      let filterType = e.target.id.split('-').pop();
+      console.log('filterType', filterType);
+
+      if (filterType === 'title') {
+        title = e.target.value;
+      } else if (filterType === 'target') {
+        target = e.target.value;
+      }
+      console.log('target', target);
+      console.log('title', title);
+
+      await getData();
       createDOM();
     },
     goToLesson: (e) => {

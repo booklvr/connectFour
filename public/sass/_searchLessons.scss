@@ -67,3 +67,35 @@
     flex: 1;
   }
 }
+
+.container--search-lessons-form {
+  margin-top: 10rem;
+  @include centered;
+  width: 100%;
+
+  .search-lessons-form {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+    .container__search-lessons-form-input {
+      // background-color: yellow;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 45%;
+      .search-lessons-input-label {
+        padding-left: 1rem;
+        font-size: 2rem;
+      }
+      .search-lessons-input {
+        padding-left: 1rem;
+        font-size: 2rem;
+        height: 3rem;
+        width: 100%;
+      }
+    }
+  }
+}

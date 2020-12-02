@@ -6,11 +6,13 @@ block content
     +title-1('Search For a Game')
 
     .container--search-lessons-form
-      form
-        label(for="search-title") Search Title
-        input#search-title(type="text")
-        label(for="search-target") Search Target
-        input#search-target(type="text")
+      form.search-lessons-form
+        .container__search-lessons-form-input
+          label.search-lessons-input-label(for="search-title") Search by title
+          input.search-lessons-input#search-title(type="text")
+        .container__search-lessons-form-input
+          label.search-lessons-input-label(for="search-target") Search by target
+          input.search-lessons-input#search-target(type="text")
 
     .container--lessons
       .container--header
@@ -98,5 +100,5 @@ block content
     //-           i.fas.fa-caret-up
     //-         .resize-handler
     //-   .container.container__lessons--data
-  //- script.
-  //-   const lessons=!{JSON.stringify(lessons)};
+    //- script.
+    //-   const lessons=!{JSON.stringify(lessons)};

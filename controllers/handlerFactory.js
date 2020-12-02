@@ -15,7 +15,10 @@ exports.getAll = (Model) =>
 
     // if (req.params.lesson) filter = { lesson: req.params.lesson };
 
-    const features = new APIFeatures(Model.find(filter), req.query)
+    const features = new APIFeatures(
+      Model.find(filter).collation({ locale: 'en' }),
+      req.query
+    )
       .filter()
       .sort()
       .limitFields()
