@@ -22,6 +22,7 @@ const searchLessonsUI = (function () {
 
     searchTitleInput: '#search-title',
     searchTargetInput: '#search-target',
+    getMoreLessonsBtn: '#get-more-lessons-btn',
 
     // sortUpdatedAt: '#sort-updatedAt',
     // sortClass: '#sort-class',
@@ -31,6 +32,7 @@ const searchLessonsUI = (function () {
   const DOM = {
     lessonDataContainer: document.querySelector(DOMStrings.lessonDataContainer),
     sortArrows: document.querySelectorAll(DOMStrings.sortArrows),
+    getMoreLessonsBtn: document.querySelector(DOMStrings.getMoreLessonsBtn),
   };
 
   // CONST VARIABLES
@@ -43,6 +45,7 @@ const searchLessonsUI = (function () {
   let limit = '25';
   let title = '';
   let target = '';
+  let allLessonsDelivered = false;
 
   // HELPER FUNCTIONS
 
@@ -64,12 +67,13 @@ const searchLessonsUI = (function () {
       });
 
       if (res.data.status === 'success') {
-        lessons = res.data.data.data;
+        return res.data.data.data;
         console.log('lessons', lessons);
-        showAlert('success', 'Lessons Loaded Successfully');
-        window.setTimeout(() => {
-          // location.assign(`/lessons/${res.data.data.data._id}`);
-        }, 1000);
+
+        // showAlert('success', 'Lessons Loaded Successfully');
+        // window.setTimeout(() => {
+        //   // location.assign(`/lessons/${res.data.data.data._id}`);
+        // }, 1000);
       } else {
         showAlert('error', 'There was an error.  Could not load lessons');
       }
@@ -108,7 +112,7 @@ const searchLessonsUI = (function () {
     row.appendChild(newColumn);
   };
 
-  const createDOM = () => {
+  const createDOM = (lessons) => {
     console.log('create dom lessons', lessons);
     DOM.lessonDataContainer.innerHTML = '';
     lessons.forEach((lesson) => {
@@ -155,8 +159,8 @@ const searchLessonsUI = (function () {
     },
 
     loadPage: async () => {
-      await getData();
-      createDOM();
+      lessons = await getData();
+      createDOM(lessons);
     },
     sort: async (e) => {
       console.log('sort this data');
@@ -180,8 +184,8 @@ const searchLessonsUI = (function () {
         sort = '-' + sort;
       }
 
-      await getData();
-      createDOM();
+      lessons = await getData();
+      createDOM(lessons);
 
       // lessons.sort(dynamicSort(sortOrder, sortType));
 
@@ -202,8 +206,27 @@ const searchLessonsUI = (function () {
       console.log('target', target);
       console.log('title', title);
 
-      await getData();
-      createDOM();
+      lessons = await getData();
+      createDOM(lessons);
+    },
+    getMoreLessons: async (e) => {
+      if (allLessonsDelivered) return;
+
+      page = (Number(page) + 1).toString();
+      const addLessons = await getData();
+
+      if (addLessons.length === 0) {
+        DOM.getMoreLessonsBtn.innerHTML = 'No more lessons';
+        DOM.getMoreLessonsBtn.classList.remove('btn--blue');
+        DOM.getMoreLessonsBtn.classList.add('btn--grey');
+        DOM.getMoreLessonsBtn.style.cursor = 'default';
+        allLessonsDelivered = true;
+      }
+
+      console.log('addLessons', addLessons);
+      lessons = [...lessons, ...addLessons];
+      console.log(lessons);
+      createDOM(lessons);
     },
     goToLesson: (e) => {
       if (e.target.parentElement.classList.contains('lesson-link')) {

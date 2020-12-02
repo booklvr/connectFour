@@ -21,6 +21,7 @@ var controller = (function (UI) {
 
       searchTargetInput: document.querySelector(DOMStrings.searchTargetInput),
       searchTitleInput: document.querySelector(DOMStrings.searchTitleInput),
+      getMoreLessonsBtn: document.querySelector(DOMStrings.getMoreLessonsBtn),
 
       // sortUpdatedAt: document.querySelector(DOMStrings.sortUpdatedAt),
       // sortClass: document.querySelector(DOMStrings.sortClass),
@@ -47,6 +48,7 @@ var controller = (function (UI) {
 
     DOM.searchTargetInput.addEventListener('keyup', delay(UI.search, 500));
     DOM.searchTitleInput.addEventListener('keyup', delay(UI.search, 500));
+    DOM.getMoreLessonsBtn.addEventListener('click', UI.getMoreLessons);
     // DOM.sortClass.addEventListener('click', UI.sort);
     // DOM.sortChapter.addEventListener('click', UI.sort);
     // DOM.sortUpdatedAt.addEventListener('click', UI.sort);

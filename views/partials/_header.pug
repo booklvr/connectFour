@@ -7,9 +7,11 @@ header.header
       ul.nav__el
         if user
           li.nav__el__cta.nav__el__cta--primary
+            a(href="/searchLessons") find game
+          li.nav__el__cta.nav__el__cta--primary
             a(href="/addLesson") create game
           li.nav__el__cta.nav__el__cta--primary
-            a(href="/lessons") saved games
+            a(href="/lessons") my games
           li.nav__el__cta
             a#logout logout
           li.nav__el__cta
@@ -18,6 +20,8 @@ header.header
               //- img.nav__user-img(src=`/img/users/${user.photo}` alt=`Photo of ${user.name}`)
               span= user.displayName
         else
+          li.nav__el__cta.nav__el__cta--primary
+            a(href="/searchLessons") find game
           li.nav__el__cta.nav__el__cta
             a(href="/login") login
           li.nav__el__cta

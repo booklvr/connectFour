@@ -57,6 +57,10 @@ footer {
   }
 }
 
+.main--search-lessons {
+  @include centered;
+}
+
 #main-login,
 #main-register,
 #main-update-user {
