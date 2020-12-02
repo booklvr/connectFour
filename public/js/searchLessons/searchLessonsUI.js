@@ -43,7 +43,7 @@ const searchLessonsUI = (function () {
       const res = await axios({
         method: 'GET',
         url: '/api/v1/lessons',
-        params: {},
+        // params: {},
       });
 
       if (res.data.status === 'success') {

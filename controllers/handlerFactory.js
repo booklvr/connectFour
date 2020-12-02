@@ -4,12 +4,16 @@ const APIFeatures = require('../utils/apiFeatures');
 
 exports.getAll = (Model) =>
   catchAsync(async (req, res, next) => {
-    let filter = {
-      // only return classrooms and students of user
-      owner: req.user._id,
-    };
+    let filter = {};
 
-    if (req.params.classroom) filter = { classroom: req.params.classroom };
+    // if (req.user) {
+    //   filter = {
+    //     // only return classrooms and students of user
+    //     owner: req.user._id,
+    //   };
+    // }
+
+    // if (req.params.lesson) filter = { lesson: req.params.lesson };
 
     const features = new APIFeatures(Model.find(filter), req.query)
       .filter()
