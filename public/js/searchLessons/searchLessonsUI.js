@@ -230,7 +230,7 @@ const searchLessonsUI = (function () {
     },
     goToLesson: (e) => {
       if (e.target.parentElement.classList.contains('lesson-link')) {
-        location.assign(`lessons/${e.target.parentElement.id}`);
+        location.assign(`connectFour/${e.target.parentElement.id}`);
       }
     },
   };
